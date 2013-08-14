@@ -1,0 +1,117 @@
+/* =Button effect
+----------------------------------------------- */
+
+h1.btn{text-transform: none; font-size: 0.8em; padding-top: .5em;} 
+.btn {
+    display: inline-block;
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    color: $beige; 
+    border: 1px $beige solid;
+    overflow: hidden; 
+
+    @include transition( border .5s linear);
+    @include transition( background .5s linear);
+    @include transition( color .5s linear ); 
+}
+
+.btn:after {
+    pointer-events: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    content: '';
+    -webkit-box-sizing: content-box; 
+    -moz-box-sizing: content-box; 
+    box-sizing: content-box;
+
+    display: none;
+}
+
+.btn:before { 
+    speak: none;
+    line-height: 90px;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    display: block;
+}
+
+ 
+
+.no-touch .btn:hover {
+    background: rgba($beige,1);
+    color:$beige; 
+}
+
+.no-touch .btn:hover:before {
+    -webkit-animation: toRightFromLeft 0.3s forwards;
+    -moz-animation: toRightFromLeft 0.3s forwards;
+    animation: toRightFromLeft 0.3s forwards;
+}
+
+@-webkit-keyframes toRightFromLeft {
+    49% {
+        -webkit-transform: translate(100%);
+    }
+    50% {
+        opacity: 0;
+        -webkit-transform: translate(-100%);
+    }
+    51% {
+        opacity: 1;
+    }
+}
+@-moz-keyframes toRightFromLeft {
+    49% {
+        -moz-transform: translate(100%);
+    }
+    50% {
+        opacity: 0;
+        -moz-transform: translate(-100%);
+    }
+    51% {
+        opacity: 1;
+    }
+}
+@keyframes toRightFromLeft {
+    49% {
+        transform: translate(100%);
+    }
+    50% {
+        opacity: 0;
+        transform: translate(-100%);
+    }
+    51% {
+        opacity: 1;
+    }
+}
+
+
+
+// variations
+
+.me .btn { 
+    color: $me-color; 
+    border-color: $me-color; 
+}
+
+.no-touch .me  .btn:hover {
+    background: rgba($me-color,1); 
+}
+
+
+.home .btn {
+    color: $home-dark-color; 
+    border-color: $home-dark-color; 
+}
+.no-touch .home .btn:hover {
+    border-color: $home-dark-color; 
+}

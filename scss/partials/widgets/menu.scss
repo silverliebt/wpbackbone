@@ -1,0 +1,137 @@
+/* =Menu
+----------------------------------------------- */
+
+
+.navigation-main { 
+    letter-spacing: 1px;
+    position: relative;
+    left: 8px;
+    margin-bottom:10px;
+    height: 22px;
+    margin: 0 auto;
+    display: block; 
+    width: 100%;
+
+
+    @include breakpoint( 900px ) {  width:100% }
+    @include breakpoint( 500px) { width:90%; margin:0 auto;}
+}
+.navigation-main ul {
+    list-style: none;
+    margin: 0;
+    padding-left: 0; 
+    
+    @media screen and (max-height: 500px) { display: none; }
+    @include breakpoint( 500px) { display: none; }
+}
+.navigation-main li { 
+    width: 20%;
+    float: left;
+    position: relative;
+}
+
+.navigation-main li:nth-child(2) { margin-top:1.2em; }
+.navigation-main li:nth-child(3) { margin-top:2.4em; }
+.navigation-main li:nth-child(4) { margin-top:3.6em; }
+.navigation-main li:nth-child(5) { margin-top:4.8em; }
+
+.navigation-main li:last-child { margin-right: 0;} 
+
+
+.navigation-main h2 {  
+    font-size: 1.4em;  
+}
+
+.navigation-main a {  
+    font-size: 12px;
+    text-decoration: none;
+    display: block;
+    color:$beige;
+
+}
+.navigation-main ul ul {
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
+    display: none;
+    float: left;
+    position: absolute;
+    top: 1.5em;
+    left: 0;
+    z-index: 99999;
+}
+.navigation-main ul ul ul {
+    left: 100%;
+    top: 0;
+}
+.navigation-main ul ul a { width: 200px; }
+.navigation-main ul ul li {}
+
+.navigation-main li:hover > a {
+    opacity:0.5;
+}
+.navigation-main ul ul :hover > a { 
+}
+.navigation-main ul ul a:hover {}
+
+.navigation-main ul li:hover > ul {
+    display: block;
+} 
+.navigation-main .current-menu-item h2 { 
+    //opacity:0.5;
+    background: $beige;
+    padding: 2px 4px;
+    display: inline;
+    letter-spacing: .1em;
+    font-size: 1.2em;
+    font-style: italic;
+    text-transform: capitalize;
+    font-family: georgia;
+}
+
+.home .navigation-main .current-menu-item h2 { color:rgb(201, 90, 93) }
+.me .navigation-main .current-menu-item h2 { color:rgb(90, 145, 201)}
+.say-hi .navigation-main .current-menu-item h2 { color:rgb(90, 201, 161) }
+.fun .navigation-main   h2 { color:#44443f }
+// .work .navigation-main h2 {
+//     padding: 12px 40px;
+//     display: inline; 
+//     background: $work-color; 
+// }
+.work .navigation-main .current-menu-item h2 { color:$beige; background: #5c4d43; padding: 4px;}
+.work .navigation-main a {  
+    font-size: 12px;
+    text-decoration: none;
+    display: block;
+    color:#454442;
+}
+// .to-dos .navigation-main .current-menu-item h2 { color:#fed5bf;   }
+
+
+
+
+/* Small menu */
+.menu-toggle {
+    display: none;
+    cursor: pointer;
+    text-align: right;
+    width: 100%;
+    margin-bottom: 5px;
+
+    @include breakpoint( 500px) { float: right;  display: block;}
+    @media screen and (max-height: 500px) { float: right;  display: block;}
+} 
+
+    .main-small-navigation { width:90%; margin:0 auto; left: 8px; position :relative}
+
+    .main-small-navigation ul.nav-menu.toggled-on {  width: 100%;   display: block; margin: 0}
+
+    .main-small-navigation .nav-menu.toggled-on li { width: 20%; float: left; }
+    .main-small-navigation  li h2 { 
+        font-family: georgia; 
+        text-transform: lowercase; 
+        text-decoration: none;
+        text-align: center;
+    }
+
+    .main-small-navigation  li:last-child h2 { text-align: right; }
+
+.main-small-navigation ul { display: none; }

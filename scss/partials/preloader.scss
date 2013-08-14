@@ -1,0 +1,114 @@
+/* =Preloader
+----------------------------------------------- */
+ .preloader {
+    left: 50%; 
+    top: 50%; 
+    margin: -50px 0 0 -100px;
+    position: absolute;
+}
+
+    .preloader .outer{ 
+     
+        width: 200px;
+        height: 100px;
+        border: $base-border;    
+      
+      
+        @include animation( counter-clock , 8s , linear, both  );
+    }
+
+    .preloader .icons {
+        z-index: 1;
+        position: absolute;
+        display: block; 
+        width: 44px;
+        height: 44px; 
+        margin: -22px 0 0 -22px;
+        top: 50%;
+        left: 50%;
+    }
+
+        .preloader .icons svg{
+            width: 44px;
+            height: 44px; 
+            position: absolute;
+            left:0;
+        }
+
+            .preloader .icons li { 
+                opacity: 0; 
+                width: 44px;
+                height: 44px;
+                position: absolute;
+                left: 0;
+            }
+
+            .preloader polyline, .preloader path { stroke: $sayhi-color }
+ 
+            .preloader .icons li:nth-child(1) { 
+                left: 6px; 
+                top: 8px; 
+
+                -webkit-animation: fadein 6s ease-in-out -4s infinite alternate; 
+                -moz-animation: fadein 6s ease-in-out -4s infinite alternate;
+                animation: fadein 6s ease-in-out -4s infinite alternate;
+            }
+
+            .preloader .icons li:nth-child(2) { 
+                top: 7px; 
+                left: 7px; 
+            
+                -webkit-animation: fadein 6s ease-in-out 0s infinite alternate;
+                -moz-animation: fadein 6s ease-in-out 0s infinite alternate;
+                animation: fadein 6s ease-in-out 0s infinite alternate;
+            }
+
+            .preloader .icons li:nth-child(3) { 
+                top: 8px; 
+                left: 6px;
+                 
+                -webkit-animation: fadein 6s ease-in-out 4s infinite alternate; 
+                -moz-animation: fadein 6s ease-in-out 4s infinite alternate;
+                animation: fadein 6s ease-in-out 4s infinite alternate;
+            }
+
+ 
+ 
+
+
+    .preloader .inner{ 
+ 
+        width: 80px;
+        height: 80px; 
+        left: 50%; 
+        top: 50%; 
+        margin: -40px 0 0 -40px;
+        position: absolute; 
+        background-color: $beige;  
+     
+        @include apply-origin( 50% 50%, true );
+        @include animation( counter-clock , 8s , linear, both  );
+    }  
+
+@include keyframes( counter-clock ){ 
+    to {
+        @include rotate( -180deg ); 
+    }
+}
+
+  
+
+@include keyframes( fadein ){ 
+    0%  {
+        opacity: 0 ;
+    }
+    66%  {
+        opacity: 0 ;
+    }
+    76%  {
+        opacity: 1 ;
+    }    
+    100%  {
+        opacity: 1 ;
+    }  
+} 

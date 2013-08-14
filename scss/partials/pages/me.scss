@@ -1,0 +1,405 @@
+	/* =me
+----------------------------------------------- */  
+ 
+#me { background: $beige}
+
+	#me img { width : 100%; position: relative;}
+
+	#me .welcome {  overflow: hidden; position: relative;}
+
+	#me .welcome .menu {  
+		width: 400px;
+		top: 50%;
+		z-index: 10;
+		left: 50%;
+		margin: -80px 0 0 -200px;
+		position: absolute;
+	}
+
+	#me .welcome .menu p{ 
+		line-height: 1.5em;
+		letter-spacing: .2em;
+		font-size: 1.1em;
+		padding: 50px 20px; 
+		color: #5a91c9;
+		width: 100%;
+		z-index: 10;
+		position: absolute;
+		text-transform: lowercase;
+
+		@include breakpoint( 650px ) { font-size: 1em; }
+	}
+
+	#me .welcome .hello span,
+	#me .bio .content a{
+		color: #a3b8de; 
+		padding-bottom: 1px;
+		border-bottom: 1px solid #a3b8de;
+		cursor: pointer;
+	}
+	#me .bio .content a {border-bottom-color: $dark-beige}
+
+	#me .welcome .menubg {  
+		height: 170px;
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+
+		ul.stripes.menubg li.stripe { width: 4.3%; }
+		ul.stripes.menubg li.stripe .inner{ background: $beige; width: 100%;}
+
+	#me .bio{
+		padding-bottom: 30px;
+		margin-bottom: 150px;
+		margin-top: 100px;
+		border-bottom: $dark-beige 2px solid;
+		position: relative;
+	}
+
+		#me .bio h1,
+		#me .experience h1,
+		#me .skills h1
+		{
+			border-top: $dark-beige 2px solid;
+			letter-spacing: .2em;
+			font-size: 1.8em;
+			padding: 14px 0;
+			margin-bottom: 30px;
+			border-bottom: $dark-beige 2px solid;
+
+			@include breakpoint( 650px ) { font-size: 1.2em; }
+		}
+		#me .bio h1,
+		#me .experience h1 { color:$me-color }
+
+		#me .bio .content p{ 
+			line-height: 1.8em; 
+			color:#5a91c9; 
+			margin-bottom: 3em;
+		}
+			#me .bio .content p:last-child{  margin-bottom: .5em; } 
+
+		#me .bio .readon {
+			left: 50%;
+			margin: 0 0 -22px -50px;
+			padding: 0px 10px 7px;
+			background: $beige;
+			bottom: 0;
+			position: absolute;
+			width: 100px;
+			cursor: pointer;
+			color: $me-color
+		}
+ 
+ 
+
+.bg-wrap {
+	position: absolute;
+	top: -110px;
+	width: 100%;
+	height: 300px;
+}
+
+
+.fg-wrap {
+	z-index: 2;
+	position: relative;
+	width: 720px;
+	height: 280px;
+	margin: -3% -360px;
+	left: 50%;
+
+	@include rotate( 2deg );
+}
+
+
+  
+ 
+ul.stripes { width:100%;height:100%; margin:0 } 
+ul.stripes li.stripe {
+	position:relative;
+	float: left; 
+	height: 0%; 
+
+	@include transition( all 1s $ease-out-back ); 
+	@include breakpoint( 1000px ) { width: 2%;}
+}
+
+ul.stripes.bg {
+	display:block;
+	//@include breakpoint( 1000px ) { display:none; }
+}
+ul.stripes.bg li.stripe { width: 1%;}
+
+
+
+ 
+ul.stripes.fg li.stripe {
+	width: 4%;
+	border-right: 2px solid #5784b9; 
+
+	box-shadow: 6px 6px 0 0 #5784b9;
+}
+
+ul.stripes.fg li.stripe:last-child{ border-right: none; }
+ 
+ 
+
+ul.stripes li.stripe.expand { height: 100%; }
+
+li.stripe .inner {
+	width: 100%;
+	height: 0%;
+	position: absolute;
+	// opacity: .2;
+	bottom: 0; 
+	@include transition( all 1s $ease-out-back .5s); 
+}
+li.stripe .inner.expand { height: 100%; }
+
+ul.stripes.fg li.stripe .inner { background: $beige; }
+ul.stripes.bg li.stripe .inner { background: #5a91c9; 
+	// opacity:0.5
+}
+
+
+.skill-titles { 
+	margin-bottom: 30px; 
+	display: block;
+
+	@include breakpoint( 1250px ) { display: none }
+}
+
+	.skill-titles p{
+		float: left;
+		width: 50%;
+	}
+
+	.skill-titles p{
+		float: left;
+		width: 50%;
+	}
+
+	.skill-titles p:first-child{ padding-right: 20px; }
+	.skill-titles p:last-child{ padding-left: 20px; }	
+
+.skills { 
+	width:100% ; 
+	background: #5785b5;
+	padding: 50px 0;
+	margin-bottom: 150px;
+}
+
+// .skills h1 { 
+// 	letter-spacing: .2em;
+// 	font-size: 1.8em;
+// 	margin-bottom: 40px;
+// }
+
+#me .skills .design,
+#me .skills .development {
+	width:50%;
+	float:left;
+
+	@include breakpoint( 1250px ) { width:100%; float:none;}
+}
+ 
+
+// .sub-menu {
+// 	width:90px;
+// 	position: fixed;
+// 	left:10%;
+// 	top:50%;
+// 	z-index: 5;
+// 	opacity: 1;
+// 	background: #000;
+// }
+
+
+.skill { 
+	float:left;
+	position: relative; 
+	margin: 0 5% 3% 0;
+	width: 30%;
+	font-size: 1em;
+
+	@include breakpoint( 1250px ) { font-size: 1.4em; }
+	@include breakpoint( 1050px ) { font-size: 1.1em; }
+	@include breakpoint( 500px ) { font-size: .8em; }
+	@include breakpoint( 400px ) { font-size: .7em; }	
+}
+.skill:nth-child(3n) { margin-right: 0; @include breakpoint( 1250px ) { margin-bottom: 3%}}
+.skill:nth-child(4) { margin-bottom: 0; @include breakpoint( 1250px ) { margin-bottom: 10%}}
+.skill:nth-child(5) { margin-bottom: 0; @include breakpoint( 1250px ) { margin-bottom: 10%}}
+.skill:nth-child(6) { margin-bottom: 0; @include breakpoint( 1250px ) { margin-bottom: 10%}}
+
+.skill .content{  
+	position: absolute;
+	z-index: 3;
+	margin: 30% 14%;
+	width: 72%;
+}
+.skill .content p,
+.skill .content h2{ width:100%; text-align:center;}
+.skill .content p { 
+	font-size: .9em;
+	padding-bottom: 5px;
+	border-bottom: #6a99d4 2px solid;
+
+	@include breakpoint( 400px ) { 
+		padding-bottom: 0;
+		border-bottom: none;
+	}
+} 
+.skill .content h2{ font-size: 2em; }
+ 
+.skills .design { padding-right: 20px; border-right: #6a99d4 2px solid; @include breakpoint( 1250px ) { padding-right: 0; border-right:none}}
+.skills .development { padding-left: 20px; @include breakpoint( 1250px ) { padding-left: 0;} }
+
+.pie { 
+	position: relative;
+	width: 100%;
+	height: 100%;
+	-webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);
+	background-color: #6a99d4;
+	overflow: hidden !important;
+
+	@include border-radius( 50% );
+}
+
+	.design .pie { background-color: #c9d0ec }
+	.development .pie { background-color: #6a99d4 }
+
+	.inner-circle { 
+		z-index: 2;
+		top: 7%;
+		background: #5785b5;
+		border-radius: 50%;
+		position: absolute;
+		width: 86%;
+		left: 7%;
+		height: 86%;
+		overflow: hidden;
+	}
+
+	.rightside { 
+		top:0;
+		position: absolute;
+		width:50%;
+		left:50%;
+		height: 100%; 
+		overflow: hidden !important;
+	}
+		.rightside .inner {
+			background-color: $beige;
+			position: absolute;
+			width:100%;
+			height: 100%;
+			left:-100%;
+			overflow: hidden !important; 
+			opacity:0;
+
+			@include transition( all 1.5s ease-in);  
+			@include rotate( 0deg );
+			@include transform-origin( 100%, 50%, false )
+		}
+
+
+	.leftside {
+		top:0;
+		height: 100%;
+		overflow: hidden !important;
+		position: absolute;
+		width: 50%;
+	}
+
+		.leftside .inner {
+			background-color: $beige;
+			position: relative;
+			width:100%;
+			height: 100%;
+			overflow: hidden !important;
+
+			@include rotate( 180deg );
+			@include transform-origin( 100%, 50%, false );
+			@include transition( all .8s ease-out 1.5s);  
+		}
+
+.isandriod .pie .leftside,
+.isandriod .pie .rightside,
+.isandriod .pie .inner-circle { display: none} 
+.isandriod .pie .design  { color:#5785b5 } 
+ 
+
+#nz { margin: 0 auto; min-height:347px; margin-bottom: 20px } 
+
+.spacer {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
+
+.aspect-ratio { padding-bottom: 100% }
+
+#me .experience h1 {
+	margin-bottom: 10px;
+}
+
+.experience {
+	margin-bottom: 200px
+}
+ 
+.experience .row div {
+	text-align: left;
+	float: left;
+}
+
+	.experience .title p,
+	.experience .key p { color: $dark-beige } 
+	.experience p { color: #a3b8de; }  
+	
+	#me .experience .title h1 { 
+		font-size: 1.2em;
+		margin: 0;
+		border: none;
+	}
+
+	.experience .key { 
+		width:100%; 
+		height:30px; 
+		padding-bottom: 37px; 
+		margin-bottom: 20px; 
+		border-bottom: $dark-beige 2px solid;
+	} 
+		.experience .key .design { width:30%; float: left;}
+		.experience .key .development { width:40%; float: left; }
+		.experience .key .motion { width:30%; float: left;} 
+		.experience .key .design-icon svg path,
+		.experience .key .development-icon svg path,
+		.experience .key .motion-icon svg path{ fill: $dark-beige }
+
+		.experience .icon{
+			float: left; 
+			width:30px;
+			height:26px; 
+
+			@include background-size( cover ); 
+		}
+
+ 	#me .experience .job { padding: 5px}  
+ 	#me .experience .job:nth-child(odd) { background-color: rgba(235, 229, 213, .4); border-radius: 4px;} 
+ 	#me .experience .job .date { text-align: center }
+
+	#me .experience .row > div:nth-child(1n) { width: 60%; } 
+	#me .experience .row > div:nth-child(2n) { width: 20%; }
+	#me .experience .row > div:nth-child(3n) { width: 20%; }
+	.experience .row .design-icon svg path,
+	.experience .row .development-icon svg path,
+	.experience .row .motion-icon svg path{ fill: $me-color }
+
+
+
+

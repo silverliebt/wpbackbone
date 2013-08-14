@@ -1,0 +1,39 @@
+/* =Footer
+----------------------------------------------- */
+
+footer { 
+    bottom: 0;
+    position: fixed;
+    z-index: 10;
+    width: 100%;
+}
+
+    footer .cv {
+        padding: 2px 7px;
+        border: 1px $beige solid; 
+        position: absolute;  
+        bottom: 20px;
+        right: 20px;
+    }
+
+    footer .cv h1 {
+        font-size: .8em;
+    }
+
+    footer .social-btns {
+        width: 200px;
+        bottom: 15px;
+        left: 15px;
+        position: absolute;
+    }
+
+        .home footer .social-btns {
+            display: block;
+            @include breakpoint( 800px ) { display: none }
+        }
+ 
+            footer .social-btns div{
+                float: left;
+                position: relative;
+                margin-right: 10px;
+            }

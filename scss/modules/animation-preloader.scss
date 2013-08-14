@@ -1,0 +1,6 @@
+@mixin animation-preloader ( $delay ) {
+  -moz-animation    : fadein 6s ease-in-out $delay infinite alternate;
+  -webkit-animation : fadein 6s ease-in-out $delay infinite alternate;
+  -ms-animation     : fadein 6s ease-in-out $delay infinite alternate;
+  animation         : fadein 6s ease-in-out $delay infinite alternate;
+}

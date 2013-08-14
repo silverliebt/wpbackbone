@@ -1,0 +1,23 @@
+/* =Sayhi
+----------------------------------------------- */
+    
+#say-hi { background: $sayhi-color }
+
+#say-hi .content-wrap {
+    margin-top: 200px;
+    width: 50%;
+    font-size: 1.3em;
+}  
+
+#logo-sayhi-holder {
+    margin: 0 44% 0px 36%; 
+    width: 30%;
+
+    @include breakpoint( 900px ) {  margin: -25% 34% 0px 26%; width: 50%; }
+    @include breakpoint( 500px ) {  margin: -25% 24% 0px 16%; width: 70%; }
+}
+
+#logo-sayhi {max-height:270px }
+
+#say-hi svg path { fill: #59b28c; }
+ 

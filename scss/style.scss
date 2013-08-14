@@ -1,0 +1,44 @@
+/*!
+Theme Name: camo2013
+Theme URI: http://camoconnell.com
+Author: Cam O'Connell
+Author URI: http://camoconnell.com
+Description: ha haa
+Version: 1.0
+License: GNU General Public License
+License URI: license.txt
+Tags:
+*/
+
+// Modules and Variables
+@import "modules/base";
+
+
+// Partials
+@import "partials/reset";
+@import "partials/global";
+@import "partials/typography";
+@import "partials/transitions";
+@import "partials/preloader";
+@import "partials/button";
+@import "partials/share-btns";
+@import "partials/titles";
+
+@import "partials/header";
+@import "partials/footer";
+
+@import "partials/pages/page";
+@import "partials/pages/home";
+@import "partials/pages/me";
+@import "partials/pages/sayhi";
+@import "partials/pages/work";
+@import "partials/pages/fun";
+
+@import "partials/widgets/menu";
+@import "partials/widgets/slideshow";
+
+// Third-party
+@import "vendor/isotope";
+@import "vendor/wpcf7";
+@import "vendor/foundation-orbit";
+@import "vendor/countup";

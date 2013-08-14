@@ -1,0 +1,6 @@
+@mixin animation ( $animation, $duration, $ease, $mode ) {
+  -moz-animation    : $animation $duration $ease $mode;
+  -webkit-animation : $animation $duration $ease $mode;
+  -ms-animation     : $animation $duration $ease $mode;
+  animation         : $animation $duration $ease $mode;
+}

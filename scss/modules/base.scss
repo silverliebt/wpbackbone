@@ -1,0 +1,66 @@
+// Use Compass
+@import "compass"; 
+@import "placeholder"; 
+@import "breakpoints"; 
+@import "animation"; 
+@import "animation-delay";
+@import "keyframes"; 
+
+// Font weights
+$light: 100;
+$regular: 300;
+$bold: 600;
+
+// Colours 
+$beige: #fefbf2;  				// used for background and accompanying colour
+$dark-beige: #ebe5d5;
+
+$home-color : #c95a5d;
+$home-dark-color : #9a484a;
+
+$me-color : rgb(90, 145, 201);
+$me-darkblue-color:#5a91c9;
+$me-lightblue-color:#a3b8de;
+$work-color :  #fed5bf;
+$fun-color : #f9f4a3;
+$sayhi-color : #5ac9a1;
+
+$green: $sayhi-color;
+
+// Transitions
+$easing: ease-out; 
+$ease-out-back: cubic-bezier(0.120, 0.890, 0.700, 1.240);
+$duration-really-slow : 1s;
+$duration-slow 	: 0.8s;
+$duration-medium: 0.6s;
+$duration-fast 	: 0.3s;
+$duration-none 	: 0s;
+
+// Base Font
+$base-font-family: georgia;
+$base-font-weight: $regular; 
+$base-font-color: #fefbf2;
+$base-font-style : italic;
+$base-font-size: 17px;
+$base-font-size-rem: 1.7rem;
+$base-line-height: 1.6;
+$base-text-align: center;
+$base-letter-spacing: .1em;
+
+// Misc
+$base-border: $beige solid 1px;
+
+$font-size-enormous: 2.5em;
+$font-size-really-large: 1.6em;
+$font-size-large: 1.2em;
+$font-size-medium: 1em;
+$font-size-small: .85em;
+$font-size-really-small: .6em;
+
+$skew-x: 0deg;
+$skew-y: -4deg;
+
+// Headings
+$header-font-family: 'mosq', sans-serif;
+$header-font-weight: $regular;
+$header-letter-spacing: .1em; 

@@ -1,0 +1,54 @@
+/* =Wordpress Contact Form 7 Plugin 
+----------------------------------------------- */
+
+
+div.wpcf7 { margin: 50px auto 100px;}
+
+div.wpcf7 input[type="text"], 
+div.wpcf7 input[type="email"],
+div.wpcf7 textarea[name="your-message"]{
+    outline: none;
+    padding:10px 10px 13px 10px; 
+    letter-spacing:1px; 
+    width:100%;
+    text-transform: uppercase;
+    color: $green;
+    font-family: "mosq";
+    margin-bottom: 20px;
+}
+
+
+div.wpcf7 input[type="text"]:focus, 
+div.wpcf7 input[type="email"]:focus,
+div.wpcf7 textarea[name="your-message"]:focus{ background:#fff }
+
+
+div.wpcf7  .invalid input[type="text"], 
+div.wpcf7  .invalid input[type="email"],
+div.wpcf7  .invalid textarea[name="your-message"] { border:5px solid #e3aaa7; }
+
+.wpcf7-not-valid-tip-no-ajax { display:none; visibility:hidden }
+div.wpcf7-validation-errors { border: 2px solid #fefbf2;  margin: 20px 0 0}
+
+div.wpcf7 input[type="submit"] {
+    background:#c44545;
+    border: 6px solid #fefbf2;
+    border-color: #fefbf2;
+    box-shadow:none;
+    width:100%;
+    height:100px;
+    border-radius:6px;
+    text-transform: uppercase;
+    color:#fefbf2;
+    font-family: 'mosq', sans-serif;
+    font-size:20px;
+    text-shadow:none;
+    letter-spacing:1px; 
+    cursor: pointer;
+    @include transition( border .2s ease-in );
+} 
+
+div.wpcf7 input[type="submit"]:hover {
+    background:#c44545;
+    border: 0px solid #fefbf2; 
+} 

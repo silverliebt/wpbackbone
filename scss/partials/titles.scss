@@ -1,0 +1,36 @@
+.post-title-wrap {
+    z-index: 9; 
+    width: 100%;
+    position: absolute;
+    top:40%;
+    margin-top: -25px;
+}
+
+	.post-title-wrap .post-title-outer{
+	    float: right;
+	    right: 50%;
+	    position: relative; 
+	    top: 25%;
+	}
+
+	.post-title-wrap .post-title-inner{ 
+	    max-width: 500px; 
+	    color: $beige; 
+	    padding: 0 5px; 
+	    border: $base-border;
+	    letter-spacing: 2px; 
+	    top: 23%; 
+	    z-index: 3;
+	    float: right;
+	    right: -50%;
+	    position: relative;
+	}
+
+	.post-title-wrap .date { 
+	    padding: 0 5px;
+	    border: 2px solid; 
+	    top: 23%;
+	    z-index: 3;
+	    right: -50%;
+	    position: relative;
+	}

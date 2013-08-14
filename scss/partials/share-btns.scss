@@ -1,0 +1,47 @@
+#sharebox { 
+    border: $base-border; 
+    position:absolute; 
+    top:0;  
+    z-index:0; 
+    margin-top: 10px; 
+    width: 261px; 
+    height: 39px;
+}
+
+#heart { left: 50%; top: 4px; position: absolute; margin-left: -10px; background: url('images/heart.png') no-repeat; width: 18px; height: 16px;}
+.social-media-icons {  
+    position: relative;
+    display: block;
+    height: 55px;
+    width: 260px;
+    padding: 0;
+    margin: 0 auto; 
+} 
+.holder .button { border-radius:5px; height:21px; margin: 20px 5px; float: left; width: 70px; }
+.holder .button h4{ color: #fefbf2; text-align: right; padding: 2px 5px 0 0; letter-spacing: 2px; font-size: 12px;}
+.holder .facebook { background:url('images/like.jpg') no-repeat $home-color left; width: 60px;}
+.holder .twitter { background:url('images/tweet.jpg') no-repeat $home-color left}
+.holder .gplus { background:url('images/gplus.jpg') no-repeat $home-color left}
+#home .holder .facebook {margin-left: 20px;}
+
+.proper { 
+    position: relative;
+    display: none;
+    height: 30px;
+    width: 100%; 
+    padding: 0;
+    z-index:1;
+}
+
+#home .proper{top: 22px; left: 7px;}
+
+.proper .fb-frame {
+    left: 1px;
+    position: absolute;
+    width: 50px;
+    height: 50px;
+}
+.proper .facebook { float: left; width: 90px; overflow:hidden;}
+.proper .twitter { float: left; width: 90px; overflow:hidden;}
+.proper .gplus { float: left; width: 70px; overflow:hidden;}
+.proper .pinterest-button { float: left; width: 60px; overflow:hidden;} 

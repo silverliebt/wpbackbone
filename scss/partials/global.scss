@@ -1,0 +1,321 @@
+/* =Global
+----------------------------------------------- */
+
+
+body,
+button,
+select {
+	color 		: $beige;
+    font-family : $base-font-family;
+	font-size 	: $base-font-size;
+	font-size 	: $base-font-size-rem;
+	text-align 	: $base-text-align;
+}
+
+.tAll { 
+	@include transition(all $duration-slow ease-in-out);
+}
+
+.tOpacity { 
+	@include transition(opacity $duration-fast ease-out);
+}
+	.hide { opacity:0 }
+	.show { opacity:1 }
+
+body, .tBackgroundColor {
+	background-color: $beige; 
+    @include transition( background-color 400ms linear );
+}
+ 
+input, 
+textarea {
+	color: $sayhi-color;
+	background-color: $beige; 
+}
+
+/* Headings */
+h1, h2 { 
+	color:$beige;
+    font-family: $header-font-family;
+    font-weight: $base-font-weight;
+    letter-spacing: $header-letter-spacing;
+    text-transform:uppercase;
+}
+
+h3,h4 { 
+	color:$beige;
+    font-family: $base-font-family;
+    font-weight: $base-font-weight;
+    letter-spacing: $header-letter-spacing; 
+}
+ 
+
+/* Text elements */
+p {
+	font-size 	: $base-font-size;
+	font-family : $base-font-family;
+	font-weight : $base-font-weight;
+	line-height : $base-line-height; 
+	letter-spacing 	: $base-letter-spacing;
+	font-style 		: $base-font-style;
+
+	@include breakpoint( 650px ) { font-style: normal }
+}
+ul, ol {
+	margin: 0 0 1.5em 3em;
+}
+ul {
+	list-style: disc;
+}
+ol {
+	list-style: decimal;
+}
+li > ul,
+li > ol {
+	margin-bottom: 0;
+	margin-left: 1.5em;
+}
+dt {
+	font-weight: $bold;
+}
+dd {
+	margin: 0 1.5em 1.5em;
+}
+b, strong {
+	font-weight: $bold;
+}
+dfn, cite, em, i {
+	font-style: italic;
+}
+blockquote {
+	margin: 0 1.5em;
+}
+address {
+	margin: 0 0 1.5em;
+}
+pre {
+	color 		: $beige;
+	font-size 	: $base-font-size;
+	font-size 	: $base-font-size-rem;
+	line-height : $base-line-height; 
+	margin-bottom: 1.6em;
+	padding: 1.6em;
+	overflow: auto;
+	max-width: 100%;
+}
+code, kbd, tt, var {
+	/*font: 15px Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace;*/
+}
+abbr, acronym {
+	border-bottom: 1px dotted #666;
+	cursor: help;
+} 
+small {
+	font-size: 75%;
+}
+big {
+	font-size: 125%;
+}
+figure {
+	margin: 0;
+}
+table {
+	margin: 0 0 1.5em;
+	width: 100%;
+}
+th {
+	font-weight: $bold;
+}
+img {
+	/* height: auto; Make sure images are scaled correctly.
+	max-width: 100%; Adhere to container width. */
+}
+button,
+input,
+select,
+textarea {
+	font-size: 100%; /* Corrects font size not being inherited in all browsers */
+	margin: 0; /* Addresses margins set differently in IE6/7, F3/4, S5, Chrome */
+	vertical-align: baseline; /* Improves appearance and consistency in all browsers */ 
+}
+button,
+input {
+	line-height: $base-line-height; /* Addresses FF3/4 setting line-height using !important in the UA stylesheet */
+} 
+button:focus,
+html input[type="button"]:focus,
+input[type="reset"]:focus,
+input[type="submit"]:focus,
+button:active,
+html input[type="button"]:active,
+input[type="reset"]:active,
+input[type="submit"]:active {
+	border-color: #aaa #bbb #bbb #bbb;
+	box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.5), inset 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+input[type="checkbox"],
+input[type="radio"] {
+	box-sizing: border-box; /* Addresses box sizing set to content-box in IE8/9 */
+	padding: 0; /* Addresses excess padding in IE8/9 */
+}
+input[type="search"] {
+	-webkit-appearance: textfield; /* Addresses appearance set to searchfield in S5, Chrome */ 
+	@include box-sizing(content-box); /* Addresses box sizing set to border-box in S5, Chrome (include -moz to future-proof) */
+}
+input[type="search"]::-webkit-search-decoration { /* Corrects inner padding displayed oddly in S5, Chrome on OSX */
+	-webkit-appearance: none;
+}
+button::-moz-focus-inner,
+input::-moz-focus-inner { /* Corrects inner padding and border displayed oddly in FF3/4 www.sitepen.com/blog/2008/05/14/the-devils-in-the-details-fixing-dojos-toolbar-buttons/ */
+	border: 0;
+	padding: 0;
+}
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="search"],
+textarea {
+	color: #666;
+	border: none;
+	border-radius: 3px;
+}
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="search"]:focus,
+textarea:focus {
+	color: #111;
+}
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="search"] {
+	padding: 3px;
+}
+textarea {
+	overflow: auto; /* Removes default vertical scrollbar in IE6/7/8/9 */
+	padding-left: 3px;
+	vertical-align: top; /* Improves readability and alignment in all browsers */
+	width: 100%;
+}
+
+
+* {
+	@include input-placeholder( $dark-beige , mosq );
+	@include box-sizing(border-box);
+}
+
+div {
+	box-sizing: border-box;
+}
+
+/* Links */
+a, a:visited  { text-decoration: none; }  
+
+/* Alignment */
+.alignleft {
+	display: inline;
+	float: left;
+	margin-right: 1.5em;
+}
+.alignright {
+	display: inline;
+	float: right;
+	margin-left: 1.5em;
+}
+.aligncenter {
+	clear: both;
+	display: block;
+	margin: 0 auto;
+}
+
+/* Text meant only for screen readers */
+.screen-reader-text {
+	clip: rect(1px, 1px, 1px, 1px);
+	position: absolute !important;
+}
+
+.screen-reader-text:hover,
+.screen-reader-text:active,
+.screen-reader-text:focus { 
+	border-radius: 3px;
+	box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+	clip: auto !important; 
+	display: block;
+	font-size: $base-font-size;
+	font-weight: $bold;
+	height: auto;
+	left: 5px;
+	line-height: $base-line-height;
+	padding: 15px 23px 14px;
+	text-decoration: none;
+	top: 5px;
+	width: auto;
+	z-index: 100000; /* Above WP toolbar */
+}
+
+/* Clearing */
+.clearfix {
+    zoom:1;
+    &:before, &:after {
+        content: "\0020";
+        display: block;
+        height: 0;
+        overflow: hidden;
+    }
+    &:after {
+        clear: both;
+    }
+}
+ 
+
+.skew {
+	@include skew( $skew-x , $skew-y );
+}
+
+
+.narrow  { 
+	max-width: 50%; 
+	margin: 0 auto;
+
+	@include breakpoint( 1000px) { max-width: 75%; } 
+	@include breakpoint( 500px) { max-width: 90%; } 
+}
+.wide  { 
+	max-width: 85%; 
+	margin: 0 auto;
+	
+	@include breakpoint( 1000px) { max-width: 90%; }
+	@include breakpoint( 500px) { max-width: 94%; } 
+} 
+
+ 
+
+/*
+	Used on SVGs with MouseOver Events
+*/
+.hitArea{
+	z-index: 1;
+	left: 0;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	cursor: pointer;
+}
+
+.arrow-up {
+	margin: 7px auto;
+	width: 12px;
+	height: 12px;
+	border-left: 6px solid transparent;
+	border-right: 6px solid transparent;
+	border-bottom: 8px solid $beige;
+}
+
+.me .arrow-up {
+	border-bottom: 8px solid $me-color;
+}
+
+
+

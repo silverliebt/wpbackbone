@@ -1,0 +1,278 @@
+	/* =work
+----------------------------------------------- */  
+
+#work { background: $work-color; } 
+.no-touch #work { 
+	background: url(images/svgs/work_bg.svg) $work-color; 
+}
+
+#work .key { margin-top: 140px;}
+#work .key .icon,
+#work .key .design,
+#work .key .development,
+#work .key .motion {   float: left;} 
+#work .key .design-icon svg path,
+#work .key .development-icon svg path,
+#work .key .motion-icon svg path{ fill: #d1b199 }
+
+#work .key p {
+	padding: 0px 36px 0 5px;
+	color: #d1b199;
+	display: inline-block; 
+	float: left;
+}
+
+#work .description { 
+	margin-top: 10px; 
+}
+
+#work .description p{  
+	font-size: .9em;
+	text-align: left; 
+	color: #d1b199;
+}
+
+#work .description a{
+	color: #d1b199;
+	padding-bottom: 1px;
+	border-bottom: 1px solid #d1b199;
+}
+
+.touchswipe { 
+	width:100%; 
+	height:100%; 
+	padding:10px; 
+	position: absolute; 
+	top: 0; left: 0;
+	z-index: 999;
+}
+
+	.touchswipe .inner{
+		position:relative;
+		background: $beige;
+		height:100%; 
+	}
+
+	.touchswipe .inner svg{
+		position:absolute;
+		top: 50%;
+		left: 50%;
+		margin: -70px 0 0 -85px;
+	}
+
+	.touchswipe .inner svg path{
+		fill: #86766c;
+	}
+
+	.no-touch .touchswipe { display: none }
+
+	#work .content-wrap { 
+		margin-top: 40px;
+	} 
+
+		#work .item { 
+			margin-bottom: 160px;
+			position: relative;
+
+			@include breakpoint( 1080px ) { font-size: 0.8em; } 
+		}
+
+			#work .item .slideshow {
+			    width: 60%;
+			    float: left; 
+
+			    @include breakpoint( 800px ) {
+					float: none; 
+					width: 100%; 
+				}
+			}
+
+			#work .item .information{ 
+				margin: 0 0 0 -4%;
+				float: left;
+				position: relative;
+				width: 40%;
+				padding: 0px;
+
+				@include breakpoint( 800px ) { 
+					margin: 0;
+					float: none; 
+					width: 100%;
+					padding: 0 10px;
+				}
+			}
+ 
+				#work .item .information h1{ 
+					text-align: left;
+					font-size: 4em;
+				}
+
+				#work .item .information p{ 
+					text-align: left;
+					color:#454442;
+					margin:0 0 0 20%;
+					font-size: 1em;
+
+					@include breakpoint( 800px ) { margin-left:40px }
+				}
+
+				#work .item .information .positions {
+					position: absolute;
+					left: 12%;
+					width: 30px;
+
+					@include breakpoint( 800px ) { left:10px }
+				}
+				#work .information .design-icon svg path,
+				#work .information .development-icon svg path,
+				#work .information .motion-icon svg path{ fill: $beige }
+
+				#work .information .icon{
+					float: left; 
+					width:30px;
+					height:26px; 
+					margin-top: 5px;
+				}
+
+		#work .item:nth-child(even) .slideshow {
+		    width: 60%;
+		    float: right;
+
+		    @include breakpoint( 800px ) {
+				float: none; 
+				width: 100%; 
+			}
+		} 
+
+		#work  .item:nth-child(even) .information{ 
+				margin: 0 -4% 0 0;
+				float: right;
+				position: relative;
+				width: 40%;
+				padding:0;
+
+				@include breakpoint( 800px ) { 
+					margin: 0;
+					float: none; 
+					width: 100%;
+				}
+			}
+
+				#work .item:nth-child(even) .information h1{ 
+					text-align: right;
+					font-size: 4em;
+				}
+
+				#work .item:nth-child(even) .information p{ 
+					text-align: right; 
+					margin:0 20% 0 0;
+
+					@include breakpoint( 800px ) { margin-right:40px }
+				}
+
+				#work .item:nth-child(even) .information .positions { 
+					right: 12%;
+					left: auto;
+
+					@include breakpoint( 800px ) { right:5px }
+ 				}
+
+ 	// Award alignment
+	#work .item .award{
+		z-index: 10;
+		position: absolute; 
+		display: block; 
+
+		@include breakpoint( 400px ) { display: none } 
+	}
+
+		#work .item .cssda_n{ 
+			width:68px;
+			height:95px;
+		}
+
+		#work .item .cssda_w{ 
+			width:68px;
+			height:95px;
+		}
+
+		#work .item .css_n{ 
+			width:81px;
+			height:59px;
+		}
+
+		#work .item .css_w{ 
+			width:81px;
+			height:59px;
+		}
+
+		#work .item .fdi_w{ 
+			width:105px;
+			height:105px;
+		}
+
+		#work .item .wds{
+			background: url(images/webdesignserved.png) no-repeat;
+			width:31px;
+			height:57px;
+			top: -3px;
+		}
+
+
+		// left
+		#work .item:nth-child(odd)  .cssda_n{
+			background: url(images/cssda_nominee.png) no-repeat; 
+		}
+
+		#work .item:nth-child(odd)  .cssda_w{
+			background: url(images/cssda_winner.png) no-repeat; 
+		}
+
+		#work .item:nth-child(odd)  .css_n{
+			background: url(images/css_nominee.png) no-repeat; 
+		}
+
+		#work .item:nth-child(odd)  .css_w{
+			background: url(images/css_winner.png) no-repeat; 
+		}
+
+		#work .item:nth-child(odd)  .fdi_w{
+			background: url(images/fdi_winner.png) no-repeat; 
+		}
+
+		#work .item:nth-child(odd)  .wds{ left: 2%; }
+
+
+		// right
+		#work .item:nth-child(even)  .cssda_n{
+			background: url(images/cssda_nominee.png) no-repeat; 
+			top: 20%;
+			right: 0;
+		}
+
+		#work .item:nth-child(even)  .cssda_w{
+			background: url(images/cssda_winner.png) no-repeat; 
+			top: 50%;
+			right: 0;
+		}
+
+		#work .item:nth-child(even)  .css_n{
+			background: url(images/css_nominee.png) no-repeat; 
+			top: 5%;
+			right: 0;
+		}
+
+		#work .item:nth-child(even)  .css_w{
+			background: url(images/css_winner.png) no-repeat; 
+			top: 30%;
+			right: 0;
+		}
+
+		#work .item:nth-child(even)  .fdi_w{
+			background: url(images/fdi_winner.png) no-repeat; 
+			right: 0;
+			top: 0;
+		}
+
+		#work .item:nth-child(even)  .wds{  right: 2%; }
+

@@ -1,0 +1,8 @@
+@font-face {
+    font-family: 'LTTetriaBoldRegular';
+    src: url('lt_54532.eot');
+    src: url('lt_54532.eot') format('embedded-opentype'),
+         url('lt_54532.woff') format('woff'),
+         url('lt_54532.ttf') format('truetype'),
+         url('lt_54532.svg#LTTetriaBoldRegular') format('svg');
+}
