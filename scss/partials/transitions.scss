@@ -9,35 +9,35 @@
 .pt-page-ontop { z-index: 999; }
 
 .pt-page-moveToLeft { 
-	@include animation( moveToLeft, $duration-medium, ease-out, both );
+	@include animation( moveToLeft, $duration-medium, cubic-bezier(0.750, -0.005, 0.375, 1.005), both );
 }
 
 .pt-page-moveFromLeft { 
-	@include animation( moveFromLeft, $duration-medium, ease-out, both );
+	@include animation( moveFromLeft, $duration-medium, cubic-bezier(0.750, -0.005, 0.375, 1.005), both );
 }
 
 .pt-page-moveToRight {
-	@include animation( moveToRight, $duration-medium, ease-out, both );
+	@include animation( moveToRight, $duration-medium, cubic-bezier(0.750, -0.005, 0.375, 1.005), both );
 }
 
 .pt-page-moveFromRight {
-	@include animation( moveFromRight, $duration-medium, ease-out, both );
+	@include animation( moveFromRight, $duration-medium, cubic-bezier(0.750, -0.005, 0.375, 1.005), both );
 }
 
 .pt-page-moveToTop {
-	@include animation( moveToTop, $duration-medium, ease-out, both );
+	@include animation( moveToTop, $duration-medium, cubic-bezier(0.750, -0.005, 0.375, 1.005), both );
 }
 
 .pt-page-moveFromTop {
-	@include animation( moveFromTop, $duration-medium, ease-out, both );
+	@include animation( moveFromTop, $duration-medium, cubic-bezier(0.750, -0.005, 0.375, 1.005), both );
 }
 
 .pt-page-moveToBottom {
-	@include animation( moveToBottom, $duration-medium, ease-out, both );
+	@include animation( moveToBottom, $duration-medium, cubic-bezier(0.750, -0.005, 0.375, 1.005), both );
 }
 
 .pt-page-moveFromBottom {
-	@include animation( moveFromBottom, $duration-medium, ease-out, both );
+	@include animation( moveFromBottom, $duration-medium, cubic-bezier(0.750, -0.005, 0.375, 1.005), both );
 }
 
  

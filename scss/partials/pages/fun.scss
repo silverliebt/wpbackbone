@@ -3,6 +3,8 @@
  
 #fun { background: $fun-color } 
 
+#fun .demo.reveal { opacity: 1 }
+
 #fun .menu { 
 	width: 100%; 
 	position: absolute;
@@ -18,6 +20,8 @@
 		display:none;
 		cursor: pointer;
 		z-index: 10;
+
+		@include breakpoint( 600px ) { display:none !important; }
 	}
 	#fun .arrow svg path{ fill: #44443f;}
 	#fun .arrow:hover svg path{ fill: $beige;}
@@ -42,8 +46,7 @@
 	}
 
 	#fun .demo { 
-		opacity: 0; 
-		//display: b;
+		opacity: 0;  
 		position: absolute;
 		height: 100%;
 		width: 100%;
@@ -51,16 +54,31 @@
 		left:0;
 	}
 
-	#fun .lazylinepainter { opacity: 1;}
+	#fun .lazylinepainter {}
 	#fun .box2d {}
 	#fun .fonts {}
 
-	#fun .container { 
+	#fun .slideshow,
+	#fun .inner {
+		width: 100%;
+		height: 100%;
+	}
+
+	#fun .mover {height: 100%}
+
+	.no-touch #fun .slideshow .mover { 
+		@include transition-timing-function(cubic-bezier(1.000, -0.530, 0.405, 1.425))
+	}
+	.no-touch  #fun .slideshow .mover.speedup {
+        @include transition-timing-function (ease-out);
+    }
+
+	#fun .slide { 
 	    height:100%; 
 	    position:relative; 
 	}
 
-	#fun .container.guy {
+	#fun .inner.guy {
 		width:20%; 
 	    min-height: 100px; 
 	    margin: 0 40%;
@@ -68,7 +86,7 @@
 	    @include breakpoint( 1300px ) {  width:260px; margin: 0 auto;}
 	}
 
-	#fun .container.face {
+	#fun .inner.face {
 		width:30%; 
 	    min-height: 100px; 
 	    margin: 0 35%;
@@ -76,7 +94,7 @@
 	    @include breakpoint( 1000px ) {  width:290px; margin: 0 auto;}
 	}
 
-	#fun .container.shape {
+	#fun .inner.shape {
 		width:40%;  
 	    margin: 0 30%;
 
@@ -93,19 +111,51 @@
 		left: 0px; 
 	}
 
-	// #ll-face {
-	// 	top: 50%;
-	// 	position: absolute;
-	// 	left: 50%;
-	// 	margin: -135px 0 0 -175px;
-	// } 
 
-	// #ll-vertical-grid,#ll-horizontal-grid,#ll-shape { 
-	// 	top: 50%;
-	// 	position: absolute;
-	// 	left: 50%;
-	// 	margin: -220px 0 0 -290px;
-	// }
+
+
+	#fun .fonts .block.display .inner {
+		background: url('images/svgs/block.svg') no-repeat;
+		background-size: cover;
+		background-size: 100% 100%;
+		background-postion: center center;
+	}
+
+	#fun .fonts .handybit.display .inner {
+		background: url('images/svgs/handybit.svg') no-repeat;
+		background-size: cover;
+		background-size: 100% 100%;
+		background-postion: center center;
+	}
+
+
+	#fun .fonts .softsurf.display .inner {
+		background: url('images/svgs/softsurf.svg') no-repeat;
+		background-size: cover;
+		background-size: 100% 100%;
+		background-postion: center center;
+	}
+
+
+	#fun .fonts .ddu.display .inner {
+		background: url('images/svgs/ddu.svg') no-repeat;
+		background-size: cover;
+		background-size: 100% 100%;
+		background-postion: center center;
+	}
+
+
+
+	#fun .fonts .display .inner {
+		margin: 0 25%; 
+		width: 50%;
+		height: 100%; 
+
+		@include breakpoint( 600px ) { 
+			margin: 0; 
+			width: 100%;
+		}
+	}
 
 
 

@@ -9,197 +9,204 @@ define([ 'jquery'
         ,'underscore'
         ,'backbone'
         ,'plugins'
-       ],function( $ , global, Utils, _ , Backbone  , Plugins) {       
+        ,'views/pages/base'
+        ,'models/pages/fun/demo'
+        ,'views/widgets/slideshow'
+       ],function( $ , global, Utils, _ , Backbone  , Plugins, BasePageView, DemoModel, SlideshowView ) {       
     
      
-    var LazylineView = Backbone.View.extend({
- 
+    var LazylineView = BasePageView.extend({
+
+
+        model : new DemoModel(),
  
         initialize: function(){
 
-            _.bindAll(this); 
-
-            this.rendered = false; 
-
-            this.lazylineHandler = [];
-
-            this.index = 0;
-
-            this.arrows = true;
-
-            this.$container = this.$el.find('.container');
-
+            _.bindAll(this);  
+ 
+            this.setter( 'lazylineHandler' , [] ); 
             // used to add unique media queries to container
-            this.currentClass = 'guy';
+            this.setter( 'currentClass' , 'guy' ); 
 
-            this.applyline = ( global.smart.phone ) ? 'stamp' : 'paint';
+            var applyline = ( global.smart.phone ) ? 'stamp' : 'paint';
+            this.setter( 'applyline' ,  applyline );  
         },
 
 
         render : function(){
-
-            this.rendered = true; 
-
+  
             var that = this;
+
+           
+            // Setup guy, but don't paint       
+            var $guy = $("#ll-guy"),
+                $chair = $("#ll-chair");
  
-            this.demos = [ 
-                function(){
-                    
-                    // append element with unique id
-                    that.$container.append('<div id="ll-guy" />');
-                    
-                    // id must must the "ll-guy" dataset found in the svgData obj
-                    $("#ll-guy").lazylinepainter({ 
-                        'svgData' : global.misc.lazylinedata, 
-                        'strokeWidth':2, 
-                        'strokeColor':'#44443f',
-                        'scale':{
-                            'container' : that.$container,
-                            'center':true
-                        }
-                    }).lazylinepainter( that.applyline );
-                    
-                    that.$container.append('<div id="ll-chair" />');
-                    $("#ll-chair").lazylinepainter({
-                        'svgData' : global.misc.lazylinedata, 
-                        'strokeWidth':2, 
-                        'strokeColor':'#44443f', 
-                        'delay':3000,
-                        'scale':{
-                            'container' : that.$container,
-                            'center':true
-                        }
-                    }).lazylinepainter( that.applyline );
-                     
-                    that.lazylineHandler.push($("#ll-guy"),$("#ll-chair"));
-
-                    that.currentClass = 'guy';
-                    
-                }, 
-                function(){
-                
-                    that.$container.append('<div id="ll-face" />');
-                    $("#ll-face").lazylinepainter({ 
-                        'svgData' : global.misc.lazylinedata,
-                        'strokeWidth':7, 
-                        'strokeColor':'#44443f',
-                        'scale':{
-                            'container' : that.$container,
-                            'center' : true
-                        },
-                        'onComplete' : function(){
-                                $(this).animate({'top':-30},500);
-                            }   
-                    }).lazylinepainter( that.applyline );
-                    
-                    that.lazylineHandler.push($("#ll-face"));
-
-                    that.currentClass = 'face';
-                }, 
-                function(){
-                
-                   that.$container.append('<div id="ll-vertical-grid" />');
-                    $('#ll-vertical-grid').lazylinepainter({
-                            'svgData' : global.misc.lazylinedata,
-                            'strokeWidth':1,  
-                            'strokeColor':'#fefbf2',
-                            'scale':{
-                                'container' : that.$container,
-                                'center' : true
-                            }
-                        }
-                    ).lazylinepainter( that.applyline );
-                    
-                    that.$container.append('<div id="ll-horizontal-grid" />');
-                    $('#ll-horizontal-grid').lazylinepainter({
-                            'svgData' : global.misc.lazylinedata,
-                            'strokeWidth':1,  
-                            'strokeColor':'#fefbf2',
-                            'scale':{
-                                'container' : that.$container,
-                                'center' : true
-                            }
-                        }
-                    ).lazylinepainter( that.applyline );
-                    
-                    that.$container.append('<div id="ll-shape" />');
-                    $('#ll-shape').lazylinepainter({
-                            'svgData' : global.misc.lazylinedata,
-                            'strokeWidth':2,  
-                            'strokeColor':'#44443f',
-                            'delay':5000,
-                            'scale':{
-                                'container' : that.$container,
-                                'center' : true
-                            } 
-                        }
-                    ).lazylinepainter( that.applyline );
-                    
-                    that.lazylineHandler.push($('#ll-vertical-grid'),$('#ll-horizontal-grid'),$('#ll-shape'));
-
-                    that.currentClass = 'shape';
+            $guy.lazylinepainter({ 
+                'svgData' : global.misc.lazylinedata, 
+                'strokeWidth':2, 
+                'strokeColor':'#44443f',
+                'scale':{
+                    'container' : $guy.parent(),
+                    'center':true
                 }
-            ];  
+            });
+                     
+            $chair.lazylinepainter({
+                'svgData' : global.misc.lazylinedata, 
+                'strokeWidth':2, 
+                'strokeColor':'#44443f', 
+                'delay':3000,
+                'scale':{
+                    'container' : $chair.parent(),
+                    'center':true
+                }
+            });
+           
+
+            // Setup face, but don't paint  
+            var $face = $("#ll-face");
+
+            $face.lazylinepainter({ 
+                'svgData' : global.misc.lazylinedata,
+                'strokeWidth':7, 
+                'strokeColor':'#44443f',
+                'scale':{
+                    'container' : $face.parent(),
+                    'center' : true
+                },
+                'onComplete' : function(){
+                        $(this).animate({'top':-30},500);
+                    }   
+            }); 
+ 
+               
+            // Setup grid, but don't paint    
+            var $vert = $('#ll-vertical-grid'),
+                $hori = $('#ll-horizontal-grid'),
+                $shape = $('#ll-shape');
+
+            $vert.lazylinepainter({
+                    'svgData' : global.misc.lazylinedata,
+                    'strokeWidth':1,  
+                    'strokeColor':'#fefbf2',
+                    'scale':{
+                        'container' : $vert.parent(),
+                        'center' : true
+                    }
+                }
+            );
+             
+            $hori.lazylinepainter({
+                    'svgData' : global.misc.lazylinedata,
+                    'strokeWidth':1,  
+                    'strokeColor':'#fefbf2',
+                    'scale':{
+                        'container' : $hori.parent(),
+                        'center' : true
+                    }
+                }
+            );
+
+            $shape.lazylinepainter({
+                    'svgData' : global.misc.lazylinedata,
+                    'strokeWidth':2,  
+                    'strokeColor':'#44443f',
+                    'delay':5000,
+                    'scale':{
+                        'container' : $shape.parent(),
+                        'center' : true
+                    } 
+                }
+            );
+
             
-            this.demos[this.index](); 
-            this.$container.addClass( this.currentClass );
-            
-            this.enable();
-        },
+            // setup array of demos
+            this.setter( 'demos' , [ 
+                [ $guy , $chair ] , 
+                [ $face ] , 
+                [ $vert , $hori , $shape ] 
+            ]);
 
+            // init slideshow
+            this.setupSlideshow();
 
-        enable : function(){
-
-            var that = this;
-
-            this.$el.addClass('reveal'); 
-        },
-
-
-        disable : function(){ 
-            this.$el.removeClass('reveal'); 
-        },
-
-
-        next : function(){
-
-            this.clear();
-
-            if( this.index == (this.demos.length-1) )
-                this.index = 0;
-            else
-                this.index++;
-
+            // update first slide
             this.update();
+
+            this.setter( 'rendered' , true ); 
         },
 
 
-        prev : function(){
+        setupSlideshow : function(){
 
-            this.clear();
-
-            if( this.index == 0 )
-                this.index = this.demos.length-1;
-            else
-                this.index--;
-
-            this.update();
-        },
-
-
-        clear : function(){
-            $.each( this.lazylineHandler, function(index,value){
-                value.lazylinepainter('destroy');
+            this.slideshowView = new SlideshowView({ 
+                el : this.$el.find('.slideshow'), 
+                onComplete : this.onComplete,
+                beforeComplete : this.beforeComplete 
             }); 
 
-            this.lazylineHandler = []; 
+            this.slideshowView.render();  
+ 
+            // Add slideshow obj to instance stack in model.
+            // BaseView enable / disable will fire slideshow enable / disable callbacks on page change
+            this.addInstance({ 
+                hook : this.slideshowView.id, 
+                obj  : this.slideshowView 
+            }); 
+        },
+
+
+        // called from BasePageView
+        onEnable :  function(){ this.$el.addClass('reveal'); },
+
+
+        // called from BasePageView
+        onDisable : function(){  this.$el.removeClass('reveal'); },
+
+
+        beforeComplete : function( direction ){
+ 
+            var index = this.getter( 'index' ),
+                demos  = this.getter( 'demos' );
+
+            if( direction === 'right' )
+                if( index == ( demos.length-1 ) )
+                    index = 0;
+                else
+                    index++;
+            else
+                if( index == 0 )
+                    index = demos.length-1;
+                else
+                    index--;
+
+            this.setter( 'index' , index );
+            this.update();
+        },
+
+
+        onComplete : function( direction ){
+
+            var demos = this.getter( 'demos' ),
+                index = this.getter( 'index' ),
+                old = ( direction === 'right' ) ? index-1 : index+1;
+
+            $.each( demos[ old ], function(){
+                this.lazylinepainter('erase');
+            });
         },
 
 
         update : function(){
-            this.$container.removeClass( this.currentClass );
-            this.demos[ this.index ]();
-            this.$container.addClass( this.currentClass );
+
+            var demos = this.getter( 'demos' ),
+                index = this.getter( 'index' ),
+                applyline = this.getter( 'applyline' );
+ 
+            $.each( demos[ index ], function(){
+                this.lazylinepainter( applyline );
+            });
         }
     });
     

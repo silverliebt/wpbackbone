@@ -44,40 +44,37 @@ get_header(); ?>
                              	endif; 
                              ?>
 		                    <div class="slideshow">
-		                    	<div class="total-slides"></div>
-		                    	<div class="hotspot">
-		                    		<div class="left disabled"></div>
-		                    		<div class="right"></div>
-		                    	</div>
-		                    	<div class="mover">
-			                    	<div class="slide visible">
-				                    	<div class="logo tOpacity"><img src="<?php echo  the_sub_field('logo'); ?>" alt="me photo" /></div>
-				                    	<div class="hero-image">
-					                        <img src="<?php echo get_image( get_sub_field('hero') ); ?>" alt="me photo" class="out" />
-					                        
-					                        <?php 
-					                        	global $detect; 
-					                        	if( !$detect->isMobile() ): 
-					                        ?> 
-					                        	<img src="<?php echo get_image( get_sub_field('hero_over') ); ?>" alt="me photo" class="over tOpacity" />
-					                        <?php endif; ?>
-					                    </div>
-					                </div>
+		                    	
+		                    	<div class="slide ">
+		                    		<?php if(get_sub_field('logo')):  ?>
+			                    		<div class="logo tOpacity"><img src="<?php echo  the_sub_field('logo'); ?>" alt="me photo" /></div>
+			                    	<?php  endif; ?>
+			                    	<div class="hero-image">
+				                        <img src="<?php echo get_image( get_sub_field('hero') ); ?>" alt="me photo" class="out" />
+				                        
+				                        <?php 
+				                        	global $detect; 
+				                        	if( !$detect->isMobile() ): 
+				                        ?> 
+				                        	<img src="<?php echo get_image( get_sub_field('hero_over') ); ?>" alt="me photo" class="over tOpacity" />
+				                        <?php endif; ?>
+				                    </div>
+				                </div>
 
-					                <?php if( get_sub_field('video') ): ?> 
-								        <div class="slide video"> 
-								         	<?php echo  the_sub_field('video'); ?>
-						                </div> 
-									<?php endif; ?>
+				                <?php if( get_sub_field('video') ): ?> 
+							        <div class="slide video"> 
+							         	<?php echo  the_sub_field('video'); ?>
+					                </div> 
+								<?php endif; ?>
 
-									<?php if( get_sub_field('photos') ): ?>
-									    <?php while( has_sub_field('photos') ): ?>
-									        <div class="slide"> 
-									         	<img src="<?php echo get_image( get_sub_field('photo') ); ?>" />
-							                </div>
-									    <?php endwhile; ?>
-									<?php endif; ?>
-								</div>
+								<?php if( get_sub_field('photos') ): ?>
+								    <?php while( has_sub_field('photos') ): ?>
+								        <div class="slide"> 
+								         	<img src="<?php echo get_image( get_sub_field('photo') ); ?>" />
+						                </div>
+								    <?php endwhile; ?>
+								<?php endif; ?>
+							
 			                </div>
 
 			                <div class="information">
@@ -94,8 +91,15 @@ get_header(); ?>
 	                                        }
 	                                    }
 	                                ?>  
+	                                
 	                            </div> 
-			                	<p class="content"><?php echo  the_sub_field('description'); ?></p>
+			                	<p class="content">
+			                		<?php echo  the_sub_field('description'); ?>
+			                		<br />
+			                		<?php if(get_sub_field('behance_link')):  ?>
+			                    		<a href="<?php echo  the_sub_field('behance_link'); ?>" target="_blank">More info</a>
+			                    	<?php  endif; ?>
+			                	</p>
 			                </div>
 	                    </div>
 	                <?php endwhile; ?>

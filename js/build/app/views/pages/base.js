@@ -32,16 +32,28 @@ define([ 'jquery'
       },
       
       enable : function(){ 
-  
+
+        // call childs enable
+        if( this.onEnable ) this.onEnable();
+
         var instances = this.getter( 'instances' );
+
         $.each( instances , function(){
           this.enable();
         });
       },
 
       disable : function(){ 
+
+        // call childs disable
+        if( this.onDisable ) this.onDisable();
+
+
  
         var instances = this.getter( 'instances' );
+
+        console.log(instances);
+
         $.each( instances , function(){
           this.disable(); 
         });
@@ -69,6 +81,6 @@ define([ 'jquery'
         });
       }
     });
-    
+ 
     return BasePageView;
 });

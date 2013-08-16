@@ -35,7 +35,7 @@
    
 	<?php do_action( 'before' ); ?>
 	<header id="masthead" class="site-header" role="banner">
-        <div class='inner tOpacity'>
+        <div class='inner  '>
             
             <nav id="site-navigation" class="navigation-main" role="navigation">
                 <h1 class="menu-toggle"><?php _e( 'Menu', 'nmf' ); ?></h1>
@@ -49,7 +49,7 @@
             </nav><!-- #site-navigation -->
         </div>
 
-        <div class="upward tOpacity"> <div class="btn">
+        <div class="upward  "> <div class="btn">
           <div class=" arrow-up"></div>
         </div> </div>
 	</header><!-- #masthead --> 

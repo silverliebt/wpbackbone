@@ -11,14 +11,13 @@ require.config({
     // Paths that contain the various different javascript files.
     paths: {
         "app"           : "app"
+        //, "box2d"       : "../lib/Box2dWeb-2.1.a.3.min"
         , "jquery"      : "../lib/jquery-2.0.2.min"
         , "global"      : "global"
         , "underscore"  : "../lib/underscore-min"
         , "backbone"    : "../lib/backbone-min"
         , "plugins"     : "../lib/plugins"
-        , "raphael"     : "../lib/raphael-min"
-        , "foundation"  : "../lib/foundation/foundation.min"
-        , "foundation/orbit" : "../lib/foundation/foundation.orbit" 
+        , "raphael"     : "../lib/raphael-min" 
     },
 
     shim: {
@@ -31,13 +30,6 @@ require.config({
         "backbone": {
             "deps" : [ "jquery" , "underscore" ],
             "exports" : "Backbone"
-        },
-        "foundation": {
-            "deps" : [ "jquery" ],
-            "exports" : "foundation"
-        },
-        "foundation/orbit": {
-            "deps" : [ "jquery", "foundation" ]
-        }
+        } 
     }
 });

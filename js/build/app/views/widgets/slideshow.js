@@ -14,10 +14,14 @@ define([ 'jquery'
     var SlideShow = Backbone.View.extend({
  
  
-        initialize: function(){
+        initialize: function(  ){
 
-            _.bindAll(this); 
+            _.bindAll(this);  
 
+            this.$el.prepend('<div class="total-slides" /><div class="hotspot"><div class="left disabled" /><div class="right"/></div>');
+            this.$el.find('.slide').wrapAll('<div class="mover" />');
+
+            this.dir = 'right';
             this.animating = false;
             this.current_slide = 1;
             this.num_of_slides = 0;
@@ -46,7 +50,7 @@ define([ 'jquery'
 
             this.onresize();
 
-            //this.enable();
+            //this.enable(); 
 
             return this;
         },
@@ -68,13 +72,14 @@ define([ 'jquery'
 
         onmouseover : function( e ){ 
             var $this = $(e.currentTarget),
-                direction = this.direction( $this ),
                 position = this.$mover.position();
+
+            this.dir = this.direction( $this )
 
             if( $this.hasClass('disabled') || this.animating )
                 return;
  
-            position = ( direction === 'left' ) ? (position.left + 20) : (position.left -20);
+            position = ( this.dir === 'left' ) ? (position.left + 20) : (position.left -20);
  
             this.$mover.addClass('speedup');
             this.$mover.css('left', position);
@@ -82,8 +87,8 @@ define([ 'jquery'
 
 
         onmouseout : function( e ){ 
-            var $this = $(e.currentTarget),
-                direction = this.direction( $this );
+
+            var $this = $(e.currentTarget);
 
             if( $this.hasClass('disabled') || this.animating )
                 return;
@@ -95,17 +100,20 @@ define([ 'jquery'
         onclick : function( e ){ 
 
             var $this = $(e.currentTarget),
-                direction = this.direction( $this ),
                 that = this;
+
+            this.dir = this.direction( $this );
 
             if( $this.hasClass('disabled') || this.animating )
                 return;
 
             this.$mover.removeClass('speedup');
-            
-            this.nextSlide( direction );
 
-            if( direction === 'left' ) {
+            this.beforeComplete();
+            
+            this.nextSlide();
+
+            if( this.dir === 'left' ) {
  
                 if( this.current_slide === 1)
                     $this.addClass('disabled');
@@ -123,13 +131,13 @@ define([ 'jquery'
         }, 
  
 
-        nextSlide : function( direction ){
+        nextSlide : function(){
 
             var that = this;
 
             this.animating = true;
    
-            if( direction === 'left' ) {
+            if( this.dir === 'left' ) {
 
                 // left
                 this.current_slide--;
@@ -140,7 +148,22 @@ define([ 'jquery'
                 this.current_slide++;
             }
 
-            setTimeout(function(){ that.animating = false },1500 );
+            setTimeout( function(){
+                that.onComplete();
+                that.animating = false;
+            } ,1500 );
+        },
+
+
+        onComplete : function(){ 
+            if( this.options.onComplete )
+                this.options.onComplete( this.dir ); 
+        },
+
+
+        beforeComplete : function(){  
+            if( this.options.beforeComplete )
+                this.options.beforeComplete( this.dir ); 
         },
 
 
@@ -161,12 +184,13 @@ define([ 'jquery'
         },
 
 
-        enable : function(){ 
+        enable : function(){
   
             global.handlers.resize.add({ 
                 'id'      : this.id,
                 'callback': this.onresize 
             }); 
+
 
             if( global.smart.device ){ 
                 this.$el.swipe("enable");
@@ -228,7 +252,9 @@ define([ 'jquery'
                     if( that.animating || that[opposite] === false )
                         return;
 
-                    that.nextSlide( opposite );
+                    that.dir = opposite;
+
+                    that.nextSlide();
 
                     if( opposite === 'left' ) {
          
@@ -249,7 +275,6 @@ define([ 'jquery'
                 threshold:100
             }); 
         }
-
     });
     
     return SlideShow; 

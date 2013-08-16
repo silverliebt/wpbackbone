@@ -12,10 +12,15 @@
         left: 0;
         top:0; 
 
-        @include transition( left 1.2s ease-in-out ); 
+        @include transition( left 1s ease-out ); 
     }
 
-    .slideshow .mover.speedup { @include transition-duration(.2s); }
+    .no-touch .slideshow .mover{ @include transition( left 1s cubic-bezier(0.750, -0.005, 0.375, 1.005)); }
+
+    .slideshow .mover.speedup { 
+        @include transition-duration(.2s); 
+        @include transition-timing-function (ease-out);
+    }
 
         .slideshow .slide { 
             float: left; 

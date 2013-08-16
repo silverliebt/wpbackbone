@@ -6,7 +6,12 @@
 	background: url(images/svgs/work_bg.svg) $work-color; 
 }
 
-#work .key { margin-top: 140px;}
+#work .key { 
+	margin-top: 140px;
+	display: block;
+
+	@include breakpoint( 400px ) { display: none }
+}
 #work .key .icon,
 #work .key .design,
 #work .key .development,
@@ -30,18 +35,22 @@
 	font-size: .9em;
 	text-align: left; 
 	color: #d1b199;
-}
 
-#work .description a{
-	color: #d1b199;
+	@include breakpoint( 400px ) { text-align: center;  }
+}
+ 
+
+ 
+#work .content a,
+#work .description a {
+	color: $beige;
 	padding-bottom: 1px;
-	border-bottom: 1px solid #d1b199;
+	border-bottom: 1px solid $beige;
 }
 
 .touchswipe { 
 	width:100%; 
-	height:100%; 
-	padding:10px; 
+	height:100%;
 	position: absolute; 
 	top: 0; left: 0;
 	z-index: 999;
@@ -57,12 +66,33 @@
 		position:absolute;
 		top: 50%;
 		left: 50%;
-		margin: -70px 0 0 -85px;
+		margin: -70px 0 0 -70px;
+
+		@include animation( finger , 2s , ease-out, both );
+		 @include animation-delay ( 2s );
 	}
 
 	.touchswipe .inner svg path{
 		fill: #86766c;
-	}
+    } 
+   
+ 
+	@include keyframes( finger ){ 
+	    0%  {
+	        margin-left: -70px ;
+	    }
+	    33%  {
+	        margin-left: -100px ;
+	    }
+	    66%  {
+	        margin-left: 100px ;
+	    }    
+	    100%  {
+	        margin-left: -70px ;
+	    }  
+	} 
+
+
 
 	.no-touch .touchswipe { display: none }
 

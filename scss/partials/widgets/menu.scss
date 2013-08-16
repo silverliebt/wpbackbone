@@ -88,7 +88,22 @@
 }
 
 .home .navigation-main .current-menu-item h2 { color:rgb(201, 90, 93) }
-.me .navigation-main .current-menu-item h2 { color:rgb(90, 145, 201)}
+.me .navigation-main .current-menu-item h2 { 
+    color:rgb(90, 145, 201)
+}
+.me .main-small-navigation  h2,
+.me .navigation-main  h1
+ { 
+    color:$beige;
+    @include breakpoint( 650px ) { color:$me-color; }
+}
+
+.fun .main-small-navigation  h2,
+.fun .navigation-main  h1
+ { 
+    color:#44443f;
+}
+
 .say-hi .navigation-main .current-menu-item h2 { color:rgb(90, 201, 161) }
 .fun .navigation-main   h2 { color:#44443f }
 // .work .navigation-main h2 {

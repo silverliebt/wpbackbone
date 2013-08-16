@@ -33,7 +33,7 @@ define([ 'jquery'
         this.setupSlideShow();
  
         if( global.smart.device )
-          this.$el.find('.touchswipe').delay(1300).fadeOut(300);
+          this.$el.find('.touchswipe').delay(4000).fadeOut(300);
 
         svg.build('design-icon', this.$el );
         svg.build('development-icon', this.$el );

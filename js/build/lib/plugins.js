@@ -85,9 +85,7 @@ define([
 
                         //o.scale.center = !o.scale.center; 
                         var center = o.scale.center  || false;
-
-                        console.log('center - '+center)
-
+ 
                         if( o.scale.center ){
                             o.scale.container.css({ 'top' : '50%', 'left' : '50%', 'position' : 'absolute' });
                         }
@@ -134,9 +132,9 @@ define([
                         'delay'             : o.delay,
                         'overrideKey'       : o.overrideKey,
                         'paper'             : paper,
-                        'count'             : 1,
+                        'count'             : 1, // where animation is within total duration
                         'complete'          : false,
-                        'playhead'          : 0,
+                        'duration'          : 0, // animation total duration 
                         'setTimeOutHandler' : []
                     }); 
                 }
@@ -149,12 +147,12 @@ define([
             PAINT LAZY LINE DATA
         */
         paint : function( ) { 
-
+ 
             return this.each(function(){
 
                 var $this = $(this),
                 d = $this.data( dataKey );  
-
+ 
                 var init = function(){
 
                     // Set width / height of container element
@@ -181,23 +179,23 @@ define([
                                 'pathstr'  : p, 
                                 'duration' : val.duration, 
                                 'attr'     : applyStyles( d, val ),
-                                'callback' : function (e) {  
+                                'callback' : function (e) {    
 
-                                    // remove reference to setTimeOut
-                                    d.setTimeOutHandler.splice(d.count,1);
-
-                                    d.count++;
+                                    d.count++;  
 
                                     if (d.svgData.length == d.count){
+
                                             d.complete = true;
-                                            if(d.onComplete !== null) d.onComplete.call($this);
+
+                                            if( d.onComplete ) 
+                                                d.onComplete.call($this);
                                         }
                                     }
                                 });
 
-                        }, d.playhead);
+                        }, d.duration);
 
-                        d.playhead += val.duration;
+                        d.duration += val.duration;
 
                         // Keep track of setTimeOuts calls
                         d.setTimeOutHandler.push(sto); 
@@ -211,6 +209,49 @@ define([
                     init();
                 else
                     setTimeout(init, d.delay);
+            
+
+                var draw = function( settings ) {
+
+                    var canvas   = settings.canvas, 
+                        pathstr  = settings.pathstr, 
+                        duration = settings.duration, 
+                        attr     = settings.attr, 
+                        callback = settings.callback;
+
+                    var guide_path;
+                    
+                    if ( typeof( pathstr ) == "string" )
+                        guide_path = canvas.path( pathstr ).attr( { stroke: "none", fill: "none" } );
+                    else
+                        guide_path = pathstr;
+
+                    var path = canvas.path( guide_path.getSubpath( 0, 1 ) ).attr( attr ),
+                        total_length = guide_path.getTotalLength( guide_path ),
+                        last_point = guide_path.getPointAtLength( 0 ),
+                        start_time = new Date().getTime(),
+                        interval_length = 25; 
+ 
+                    var interval_id = setInterval( function()
+                    {
+                        var elapsed_time = new Date().getTime() - start_time,
+                            this_length = elapsed_time / duration * total_length,
+                            subpathstr = guide_path.getSubpath( 0, this_length );  
+
+                        attr.path = subpathstr;
+
+                        path.animate( attr, interval_length );
+                        if ( elapsed_time >= duration )
+                        {
+                            clearInterval( interval_id );
+                            if ( callback !== undefined ) callback();
+                            guide_path.remove();
+                        }                                       
+                    }, interval_length );  
+ 
+
+                };
+
             });
         },
 
@@ -230,8 +271,10 @@ define([
                 for (i = 0; i < d.setTimeOutHandler.length; i++) {
                     clearTimeout( d.setTimeOutHandler[i] );
                 }
+  
+                d.paper.clear(); 
 
-                d.playhead = 0;
+                d.duration = 0;
                 d.count = 0;
                 d.complete = false; 
             });
@@ -370,44 +413,7 @@ define([
     
  
 
-    var draw = function( settings ) {
-
-        var canvas   = settings.canvas, 
-            pathstr  = settings.pathstr, 
-            duration = settings.duration, 
-            attr     = settings.attr, 
-            callback = settings.callback;
-
-        var guide_path;
-        
-        if ( typeof( pathstr ) == "string" )
-            guide_path = canvas.path( pathstr ).attr( { stroke: "none", fill: "none" } );
-        else
-            guide_path = pathstr;
-
-        var path = canvas.path( guide_path.getSubpath( 0, 1 ) ).attr( attr ),
-            total_length = guide_path.getTotalLength( guide_path ),
-            last_point = guide_path.getPointAtLength( 0 ),
-            start_time = new Date().getTime(),
-            interval_length = 25;        
-
-        var interval_id = setInterval( function()
-        {
-            var elapsed_time = new Date().getTime() - start_time,
-                this_length = elapsed_time / duration * total_length,
-                subpathstr = guide_path.getSubpath( 0, this_length );  
-
-            attr.path = subpathstr;
-
-            path.animate( attr, interval_length );
-            if ( elapsed_time >= duration )
-            {
-                clearInterval( interval_id );
-                if ( callback !== undefined ) callback();
-                guide_path.remove();
-            }                                       
-        }, interval_length );   
-    };
+    
 
 
     var ScaleRaphael = function( _this, width, height ){

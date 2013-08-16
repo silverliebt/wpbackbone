@@ -32,8 +32,9 @@ define([ 'jquery'
             $('#logo-sayhi').lazylinepainter({
             "svgData": global.misc.lazylinedata,
             "strokeWidth": 7,
-            "scale" : true,
-            "container" : $('#logo-sayhi-holder'),
+            "scale" : {
+                "container" : $('#logo-sayhi-holder')
+            }, 
             "strokeColor": "#56b990"
             }).lazylinepainter('paint');
         }

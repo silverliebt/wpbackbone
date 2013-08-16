@@ -19,7 +19,7 @@ module.exports = function(grunt) {
           mainConfigFile: './config.js',
           baseUrl       : './app',
           name          : '../main',
-          out           : '../cam.js'
+          out           : '../jasper.js'
         }
       }
     }

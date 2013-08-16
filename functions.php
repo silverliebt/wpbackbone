@@ -227,11 +227,9 @@ function get_image( $attachment_id ){
     global $detect;
   
     // Check for any mobile device, excluding tablets.
-    $size = ( $detect->isMobile() && !$detect->isTablet() ) ?  'large' : 'full';
+    $size = ( $detect->isMobile() && !$detect->isTablet() ) ?  'medium' : 'full';
 
-    $feature_image = wp_get_attachment_image_src( $attachment_id, $size);
- 
-    error_log($feature_image[0] , 0);
+    $feature_image = wp_get_attachment_image_src( $attachment_id, $size); 
 
     return $feature_image[0];
 }
