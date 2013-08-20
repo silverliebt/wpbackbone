@@ -15,6 +15,8 @@
         @include transition( left 1s ease-out ); 
     }
 
+
+ 
     .no-touch .slideshow .mover{ @include transition( left 1s cubic-bezier(0.750, -0.005, 0.375, 1.005)); }
 
     .slideshow .mover.speedup { 
@@ -62,23 +64,49 @@
         height: 75%;
         position: absolute;
         z-index: 3;
+
+        cursor: default;
     }
 
         .slideshow .hotspot .left {
+            display: none;
             width: 30%;
             height: 100%;
+            left: 0;
             float: left;
-            position: relative;
-            cursor: w-resize;
-        }
+            position: relative; 
+
+            cursor: pointer;
+        } 
 
         .slideshow .hotspot .right{
+            display: none;
             width: 30%;
             height: 100%;
+            right: 0;
             float: right;
-            position: relative;
-            cursor: e-resize;
+            position: relative; 
+
+            cursor: pointer;
+        } 
+
+        .slideshow .arrow {  
+            margin-top: -63px;
+            top: 70%;
+            position: absolute;
+            width: 70px; 
+            cursor: pointer;
+            z-index: 10; 
+
+            @include breakpoint( 600px ) { display:none !important; }
         }
+
+
+        .slideshow .hotspot .right .arrow{ right:20%; @include transition( right .2s ease-out);}
+        .slideshow .hotspot .left .arrow{ left:20%; @include transition( left .2s ease-out); }
+        .slideshow .hotspot .right:hover .arrow{ right:15% }
+        .slideshow .hotspot .left:hover .arrow{ left:15% }
+
         .slideshow .hotspot .icon{ 
             opacity:1;
             left: 50%;

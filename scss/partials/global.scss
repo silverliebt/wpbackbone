@@ -23,8 +23,7 @@ select {
 	.show { opacity:1 }
 
 body, .tBackgroundColor {
-	background-color: $beige; 
-    @include transition( background-color 400ms linear );
+	background-color: $beige;
 }
  
 input, 

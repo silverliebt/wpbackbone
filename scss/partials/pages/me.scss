@@ -1,7 +1,7 @@
 	/* =me
 ----------------------------------------------- */  
  
-#me { background: $beige}
+#me { background: $beige }
 
 	#me img { width : 100%; position: relative;}
 
@@ -115,55 +115,19 @@
 }
 
 
-  
- 
-ul.stripes { width:100%;height:100%; margin:0 } 
-ul.stripes li.stripe {
-	position:relative;
-	float: left; 
-	height: 0%; 
-
-	@include transition( all 1s $ease-out-back ); 
-	@include breakpoint( 1000px ) { width: 2%;}
-}
-
+// extends stripes.scss partial
 ul.stripes.bg {
 	display: block;
-
 	@include breakpoint( 650px ) { display: none }
 }
-ul.stripes.bg li.stripe { width: 1%;}
+ul.stripes.bg li.stripe { width: 1%; }
+ul.stripes.fg li.stripe { width: 4%; }
+
+ul.stripes.fg li.stripe .inner { background: $beige;  }
+ul.stripes.bg li.stripe .inner { background: #5a91c9; }
 
 
 
- 
-ul.stripes.fg li.stripe {
-	width: 4%;
-	border-right: 2px solid #5784b9; 
-
-	box-shadow: 6px 6px 0 0 #5784b9;
-}
-
-ul.stripes.fg li.stripe:last-child{ border-right: none; }
- 
- 
-
-ul.stripes li.stripe.expand { height: 100%; }
-
-li.stripe .inner {
-	width: 100%;
-	height: 0%;
-	position: absolute;
-	// opacity: .2;
-	bottom: 0; 
-	@include transition( all 1s $ease-out-back .5s); 
-}
-li.stripe .inner.expand { height: 100%; }
-
-ul.stripes.fg li.stripe .inner { background: $beige; }
-ul.stripes.bg li.stripe .inner { background: #5a91c9; 
-	// opacity:0.5
-}
 
 
 .skill-titles { 
@@ -192,12 +156,7 @@ ul.stripes.bg li.stripe .inner { background: #5a91c9;
 	padding: 50px 0;
 	margin-bottom: 150px;
 }
-
-// .skills h1 { 
-// 	letter-spacing: .2em;
-// 	font-size: 1.8em;
-// 	margin-bottom: 40px;
-// }
+ 
 
 #me .skills .design,
 #me .skills .development {
@@ -206,19 +165,7 @@ ul.stripes.bg li.stripe .inner { background: #5a91c9;
 
 	@include breakpoint( 1250px ) { width:100%; float:none;}
 }
- 
-
-// .sub-menu {
-// 	width:90px;
-// 	position: fixed;
-// 	left:10%;
-// 	top:50%;
-// 	z-index: 5;
-// 	opacity: 1;
-// 	background: #000;
-// }
-
-
+  
 .skill { 
 	float:left;
 	position: relative; 
@@ -428,5 +375,22 @@ ul.stripes.bg li.stripe .inner { background: #5a91c9;
 	.experience .row .motion-icon svg path{ fill: $me-color }
 
 
+	// extend button.scss partial
+	.me .btn { color: $me-color; border-color: $me-color; }
+	.no-touch .me .btn:hover { background: $me-color; }
 
+
+	// extend footer
+    .me footer .cv {
+        color: $me-color; 
+        border-color: $me-color;
+    }
+    .me footer .cv h1{ color: $me-color; }
+
+    .me footer .cv:hover {
+        color: $me-color; 
+        border-color: $me-color;
+        background: $me-color;
+    }
+    .me footer .cv:hover h1{ color: $beige; }
 

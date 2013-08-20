@@ -107,6 +107,7 @@
 			@include breakpoint( 1080px ) { font-size: 0.8em; } 
 		}
 
+			// extend slideshow.scss partial 
 			#work .item .slideshow {
 			    width: 60%;
 			    float: left; 
@@ -116,6 +117,10 @@
 					width: 100%; 
 				}
 			}
+ 
+			#work .item .slideshow .hotspot .arrow{ visibility: hidden; } 
+
+
 
 			#work .item .information{ 
 				margin: 0 0 0 -4%;
@@ -305,4 +310,16 @@
 		}
 
 		#work .item:nth-child(even)  .wds{  right: 2%; }
+
+
+
+    // extend button.scss partial
+    .work .btn { color: $beige;  border-color: $beige; }
+    .no-touch .work .btn:hover {  color: #d1b199; border-color: $beige; }
+
+
+    // extend footer 
+    .no-touch .work footer .cv:hover { background: $beige }
+    .no-touch .work footer .cv:hover h1 { color: #d1b199; }
+
 

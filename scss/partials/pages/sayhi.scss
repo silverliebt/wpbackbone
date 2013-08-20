@@ -22,4 +22,13 @@
 #logo-sayhi {max-height:270px }
 
 #say-hi svg path { fill: #59b28c; }
+
+
+    // extend button.scss partial 
+    .no-touch .say-hi .btn:hover {  color: $sayhi-color; }
+
+
+    // extend footer  
+    .no-touch .say-hi footer .cv:hover h1 { color: $sayhi-color;  }
+    .no-touch .say-hi footer .cv:hover { background: $beige;  }
  

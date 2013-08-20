@@ -1,114 +1,157 @@
 /* =Preloader
 ----------------------------------------------- */
  .preloader {
+    height: 200px;
+    width: 200px;
     left: 50%; 
     top: 50%; 
-    margin: -50px 0 0 -100px;
+    margin: -100px 0 0 -100px;
     position: absolute;
-}
 
-    .preloader .outer{ 
-     
-        width: 200px;
+    @include breakpoint( 650px ) { 
         height: 100px;
-        border: $base-border;    
-      
-      
-        @include animation( counter-clock , 8s , linear, both  );
+        width: 100px; 
+        margin: -50px 0 0 -50px;
     }
-
-    .preloader .icons {
-        z-index: 1;
-        position: absolute;
-        display: block; 
-        width: 44px;
-        height: 44px; 
-        margin: -22px 0 0 -22px;
-        top: 50%;
-        left: 50%;
-    }
-
-        .preloader .icons svg{
-            width: 44px;
-            height: 44px; 
-            position: absolute;
-            left:0;
-        }
-
-            .preloader .icons li { 
-                opacity: 0; 
-                width: 44px;
-                height: 44px;
-                position: absolute;
-                left: 0;
-            }
-
-            .preloader polyline, .preloader path { stroke: $sayhi-color }
  
-            .preloader .icons li:nth-child(1) { 
-                left: 6px; 
-                top: 8px; 
-
-                -webkit-animation: fadein 6s ease-in-out -4s infinite alternate; 
-                -moz-animation: fadein 6s ease-in-out -4s infinite alternate;
-                animation: fadein 6s ease-in-out -4s infinite alternate;
-            }
-
-            .preloader .icons li:nth-child(2) { 
-                top: 7px; 
-                left: 7px; 
-            
-                -webkit-animation: fadein 6s ease-in-out 0s infinite alternate;
-                -moz-animation: fadein 6s ease-in-out 0s infinite alternate;
-                animation: fadein 6s ease-in-out 0s infinite alternate;
-            }
-
-            .preloader .icons li:nth-child(3) { 
-                top: 8px; 
-                left: 6px;
-                 
-                -webkit-animation: fadein 6s ease-in-out 4s infinite alternate; 
-                -moz-animation: fadein 6s ease-in-out 4s infinite alternate;
-                animation: fadein 6s ease-in-out 4s infinite alternate;
-            }
-
- 
+}
  
 
+.preloader  .block {  
+    position: absolute;  
+    left:50%;
+    top:50%; 
+    border-radius: 50%; 
 
-    .preloader .inner{ 
- 
-        width: 80px;
-        height: 80px; 
-        left: 50%; 
-        top: 50%; 
-        margin: -40px 0 0 -40px;
-        position: absolute; 
-        background-color: $beige;  
-     
-        @include apply-origin( 50% 50%, true );
-        @include animation( counter-clock , 8s , linear, both  );
-    }  
+    -webkit-animation: build 1.6s ease-out 1s infinite; 
+    -moz-animation: build 1.6s ease-out 1s infinite;
+    animation: build 1.6s ease-out 1s infinite;
 
-@include keyframes( counter-clock ){ 
-    to {
-        @include rotate( -180deg ); 
-    }
 }
 
-  
+.home .preloader .block:nth-child(1n){ background: $home-color  }
+.home .preloader .block:nth-child(2n){ background: $work-color }
+.home .preloader .block:nth-child(3n){ background: $home-color }
+.home .preloader .block:nth-child(4n){ background: $me-color; }
+.home .preloader .block:nth-child(5n){ background: $work-color }
 
-@include keyframes( fadein ){ 
+.me .preloader .block:nth-child(1n){ background: $fun-color  }
+.me .preloader .block:nth-child(2n){ background: $work-color }
+.me .preloader .block:nth-child(3n){ background: $me-color }
+.me .preloader .block:nth-child(4n){ background: $sayhi-color }
+.me .preloader .block:nth-child(5n){ background: $me-color }
+
+.work .preloader .block:nth-child(1n){ background: $beige  }
+.work .preloader .block:nth-child(2n){ background: $work-color }
+.work .preloader .block:nth-child(3n){ background: $home-color }
+.work .preloader .block:nth-child(4n){ background: $dark-beige }
+.work .preloader .block:nth-child(5n){ background: $work-color }
+
+.fun .preloader .block:nth-child(1n){ background: $home-color  }
+.fun .preloader .block:nth-child(2n){ background: $me-color  }
+.fun .preloader .block:nth-child(3n){ background: $home-color }
+.fun .preloader .block:nth-child(4n){ background: $me-color; }
+.fun .preloader .block:nth-child(5n){ background: $fun-color }
+
+.say-hi .preloader .block:nth-child(1n){ background: $home-color  }
+.say-hi .preloader .block:nth-child(2n){ background: $work-color }
+.say-hi .preloader .block:nth-child(3n){ background: $home-color }
+.say-hi .preloader .block:nth-child(4n){ background: $me-color; }
+.say-hi .preloader .block:nth-child(5n){ background: $work-color }
+ 
+
+.preloader   .block:nth-child(1) {  
+    margin: -50% 0 0 -50%;
+    @include animation-delay(.1s); 
+    width: 100%;
+    height: 100%; 
+    z-index: 1; 
+}
+.preloader  .block:nth-child(2) { 
+    margin: -45% 0 0 -45%;
+    width: 90%;
+    height: 90%;  
+    z-index: 2;
+
+    @include animation-delay(.2s);
+} 
+.preloader   .block:nth-child(3) {  
+    margin: -40% 0 0 -40%;
+    width: 80%;
+    height: 80%; 
+    z-index: 3;
+
+    @include animation-delay(.3s); 
+}
+.preloader  .block:nth-child(4) { 
+    margin: -35% 0 0 -35%; 
+    @include animation-delay(.4s);
+    width: 70%;
+    height: 70%;  
+    z-index: 4;
+} 
+.preloader  .block:nth-child(5) {  
+    margin: -30% 0 0 -30%;
+    @include animation-delay(.5s); 
+    width: 60%;
+    height: 60%; 
+    z-index: 5;
+}
+.preloader   .block:nth-child(6) {  
+    margin: -25% 0 0 -25%;
+    @include animation-delay(.6s);
+    width: 50%;
+    height: 50%;  
+    z-index: 6;
+} 
+
+.preloader   .block:nth-child(7) {  
+    margin: -20% 0 0 -20%;
+    width: 40%;
+    height: 40%; 
+    z-index: 7;
+
+    @include animation-delay(.7s); 
+}
+.preloader  .block:nth-child(8) { 
+    margin: -15% 0 0 -15%; 
+    @include animation-delay(.8s);
+    width: 30%;
+    height: 30%;  
+    z-index: 8;
+} 
+.preloader  .block:nth-child(9) {  
+    margin: -10% 0 0 -10%;
+    @include animation-delay(.9s); 
+    width: 20%;
+    height: 20%; 
+    z-index: 9;
+}
+.preloader   .block:nth-child(10) {  
+    margin: -5% 0 0 -5%;
+    @include animation-delay(1s);
+    width: 10%;
+    height: 10%;  
+    z-index: 10;
+} 
+
+
+
+@include keyframes( build ){ 
     0%  {
-        opacity: 0 ;
+        @include scale( 1,1 );
     }
-    66%  {
-        opacity: 0 ;
-    }
-    76%  {
-        opacity: 1 ;
-    }    
+    // 33%  {
+    //     @include rotate( 90deg );
+    // }
+    50%  {
+        @include scale( .4,.4 );
+    } 
+    // 66%  {
+    //     @include rotate( 90deg );
+    // } 
     100%  {
-        opacity: 1 ;
+        @include scale( 1,1 );
     }  
 } 
+ 

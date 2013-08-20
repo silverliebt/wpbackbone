@@ -12,24 +12,7 @@
 	opacity:1;
 } 
 
-	#fun .arrow {  
-		margin-top: -63px;
-		top: 50%;
-		position: absolute;
-		width: 70px;
-		display:none;
-		cursor: pointer;
-		z-index: 10;
-
-		@include breakpoint( 600px ) { display:none !important; }
-	}
-	#fun .arrow svg path{ fill: #44443f;}
-	#fun .arrow:hover svg path{ fill: $beige;}
-
-	#fun .left { left: 5%; }
-	#fun .right { right: 5%; }
-
-
+	 
 
 	#fun .menu { color: $beige; z-index:10}
 	#fun .menu span{ 
@@ -37,12 +20,17 @@
 		color: #44443f; 
 		padding-bottom: 1px; 
 		border-bottom: 1px solid #44443f;
-	}
-
-	#fun .menu span:hover{
-		color:$beige;
-		border-bottom: 1px solid $beige;
 		cursor: pointer;
+	}
+  
+	#fun .menu .selected { 
+		background: $beige;
+		letter-spacing: .1em;
+		font-style: italic;
+		border: none;
+		font-size: .9em;
+		padding: 2px 5px 4px;
+		cursor: default;
 	}
 
 	#fun .demo { 
@@ -102,15 +90,14 @@
 	}
 
 	#ll-guy, #ll-chair, #ll-face, #ll-vertical-grid,#ll-horizontal-grid,#ll-shape  { 
-		// top: 50%;
-		// position: absolute;
-		// left: 50%;
-		// margin: -210px 0 0 -145px;
 		top: 0px;
 		position: absolute;
 		left: 0px; 
 	}
 
+
+
+    #fun .slideshow .arrow svg path{ fill: #44443f;} 
 
 
 
@@ -157,6 +144,10 @@
 		}
 	}
 
+
+    // extend button.scss partial
+    .fun .btn { color: $beige;  border-color: $beige; }
+    .no-touch .fun .btn:hover {  color: #d1b199; border-color: $beige; }
 
 
  

@@ -34,84 +34,10 @@ h1.btn{text-transform: none; font-size: 0.8em; padding-top: .5em;}
     display: none;
 }
 
-.btn:before { 
-    speak: none;
-    line-height: 90px;
-    font-style: normal;
-    font-weight: normal;
-    font-variant: normal;
-    text-transform: none;
-    display: block;
-}
-
  
 
 .no-touch .btn:hover {
     background: rgba($beige,1);
     color:$beige; 
-}
-
-.no-touch .btn:hover:before {
-    -webkit-animation: toRightFromLeft 0.3s forwards;
-    -moz-animation: toRightFromLeft 0.3s forwards;
-    animation: toRightFromLeft 0.3s forwards;
-}
-
-@-webkit-keyframes toRightFromLeft {
-    49% {
-        -webkit-transform: translate(100%);
-    }
-    50% {
-        opacity: 0;
-        -webkit-transform: translate(-100%);
-    }
-    51% {
-        opacity: 1;
-    }
-}
-@-moz-keyframes toRightFromLeft {
-    49% {
-        -moz-transform: translate(100%);
-    }
-    50% {
-        opacity: 0;
-        -moz-transform: translate(-100%);
-    }
-    51% {
-        opacity: 1;
-    }
-}
-@keyframes toRightFromLeft {
-    49% {
-        transform: translate(100%);
-    }
-    50% {
-        opacity: 0;
-        transform: translate(-100%);
-    }
-    51% {
-        opacity: 1;
-    }
-}
-
-
-
-// variations
-
-.me .btn { 
-    color: $me-color; 
-    border-color: $me-color; 
-}
-
-.no-touch .me  .btn:hover {
-    background: rgba($me-color,1); 
-}
-
-
-.home .btn {
-    color: $home-dark-color; 
-    border-color: $home-dark-color; 
-}
-.no-touch .home .btn:hover {
-    border-color: $home-dark-color; 
-}
+} 
+ 

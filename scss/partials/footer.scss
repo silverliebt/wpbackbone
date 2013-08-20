@@ -17,8 +17,14 @@ footer {
         display: block;
     }
 
-    footer .cv h1 {
-        font-size: .8em;
+    .home footer .cv {
+        display: block;
+        @include breakpoint( 400px ) { display: none }
+    }
+
+    footer .cv h1 { 
+        font-size: .8em; 
+        @include transition( color .5s linear ); 
     }
 
     footer .social-btns {
@@ -38,6 +44,5 @@ footer {
                 position: relative;
                 margin-right: 10px;
             }
-
 
     .fun footer  { display: none; }
