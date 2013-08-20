@@ -36,7 +36,12 @@ define([ 'jquery'
         this.menu();
 
         // init Biography View
-        this.bioView = new BioView({ el : this.$el.find('.bio') });
+        this.bioView = new BioView({ el : this.$el.find('.bio') }); 
+        this.bioView.render();
+        this.addInstance({ 
+            hook : 'bioView', 
+            obj : this.bioView 
+        });
 
         // init Skills View
         this.skillsView = new SkillsView({ el : this.$el.find('.skills') });   

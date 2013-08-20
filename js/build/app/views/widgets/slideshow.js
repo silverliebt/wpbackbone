@@ -19,6 +19,8 @@ define([ 'jquery'
             _.bindAll(this);  
 
             this.$el.prepend('<div class="total-slides" /><div class="hotspot"><div class="left disabled" /><div class="right"/></div>');
+            this.$el.find('.right').append('<div class="arrow"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" x="0" y="0" width="70" height="126" viewBox="0" enable-background="new 0 0 70 126" xml:space="preserve"><path fill="#010101" d="M8.5 122.1c-1 0-2-0.4-2.8-1.2 -1.6-1.6-1.6-4.1 0-5.7 1.2-1.2 1.2-2 1.3-3.9 0.1-2.4 0.3-5.8 3.6-9.1s6.7-3.5 9.1-3.6c1.9-0.1 2.7-0.1 3.9-1.3 1.1-1.1 1.2-2 1.3-3.9 0.1-2.4 0.3-5.8 3.6-9.1 3.3-3.3 6.7-3.5 9.1-3.6 1.9-0.1 2.7-0.1 3.9-1.3 1.1-1.1 1.2-2 1.3-3.9 0.1-2.4 0.3-5.8 3.6-9.1 2.9-2.9 6.9-3.4 9.9-3.8 0.7-0.1 1.6-0.2 2.2-0.3 -0.7-0.1-1.6-0.2-2.3-0.3 -2.9-0.4-6.9-0.8-9.9-3.8 -3.3-3.3-3.5-6.7-3.6-9.1 -0.1-1.9-0.2-2.7-1.3-3.9 -1.2-1.2-2-1.2-3.9-1.3 -2.4-0.1-5.8-0.3-9.1-3.6 -3.3-3.3-3.5-6.7-3.6-9.1 -0.1-1.9-0.2-2.7-1.3-3.9 -1.2-1.2-2-1.2-3.9-1.3 -2.4-0.1-5.8-0.3-9.1-3.6 -3.3-3.3-3.5-6.7-3.6-9.1 -0.1-1.9-0.2-2.7-1.3-3.9 -1.6-1.6-1.6-4.1 0-5.7 1.6-1.6 4.1-1.6 5.7 0 3.3 3.3 3.5 6.7 3.6 9.1 0.1 1.9 0.2 2.7 1.3 3.9 1.2 1.2 2 1.2 3.9 1.3 2.4 0.1 5.8 0.3 9.1 3.6 3.3 3.3 3.5 6.7 3.6 9.1 0.1 1.9 0.2 2.7 1.3 3.9 1.2 1.2 2 1.2 3.9 1.3 2.4 0.1 5.8 0.3 9.1 3.6 3.3 3.3 3.5 6.7 3.6 9.1 0.1 1.9 0.2 2.7 1.3 3.9 1 1 3.1 1.3 5.2 1.5 3.2 0.4 9.8 1.2 9.8 8.3 0 7.1-6.6 7.9-9.8 8.3 -2.1 0.2-4.2 0.5-5.2 1.5 -1.1 1.1-1.2 2-1.3 3.9 -0.1 2.4-0.3 5.8-3.6 9.1 -3.3 3.3-6.6 3.5-9.1 3.6 -1.9 0.1-2.7 0.1-3.9 1.3 -1.1 1.1-1.2 2-1.3 3.9 -0.1 2.4-0.3 5.8-3.6 9.1 -3.3 3.3-6.6 3.5-9.1 3.6 -1.9 0.1-2.7 0.1-3.9 1.3 -1.1 1.2-1.2 2-1.3 3.9 -0.1 2.4-0.3 5.8-3.6 9.1C10.5 121.8 9.5 122.1 8.5 122.1z"/></svg></div>');
+            this.$el.find('.left').append('<div class="arrow"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" x="0" y="0" width="70" height="126" viewBox="0" enable-background="new 0 0 70 126" xml:space="preserve"><path fill="#010101" d="M62.7 2.7c1 0 2 0.4 2.8 1.2 1.6 1.6 1.6 4.1 0 5.7 -1.2 1.2-1.2 2-1.3 3.9 -0.1 2.4-0.3 5.8-3.6 9.1s-6.6 3.5-9.1 3.6c-1.9 0.1-2.7 0.1-3.9 1.3 -1.1 1.1-1.2 2-1.3 3.9 -0.1 2.4-0.3 5.8-3.6 9.1 -3.3 3.3-6.6 3.5-9.1 3.6 -1.9 0.1-2.7 0.1-3.9 1.3 -1.1 1.1-1.2 2-1.3 3.9 -0.1 2.4-0.3 5.8-3.6 9.1 -2.9 2.9-6.9 3.4-9.9 3.8 -0.7 0.1-1.6 0.2-2.2 0.3 0.7 0.1 1.6 0.2 2.3 0.3 2.9 0.4 6.9 0.8 9.9 3.8 3.3 3.3 3.5 6.7 3.6 9.1 0.1 1.9 0.2 2.7 1.3 3.9 1.2 1.2 2 1.2 3.9 1.3 2.4 0.1 5.8 0.3 9.1 3.6 3.3 3.3 3.5 6.7 3.6 9.1 0.1 1.9 0.2 2.7 1.3 3.9 1.2 1.2 2 1.2 3.9 1.3 2.4 0.1 5.8 0.3 9.1 3.6 3.3 3.3 3.5 6.7 3.6 9.1 0.1 1.9 0.2 2.7 1.3 3.9 1.6 1.6 1.6 4.1 0 5.7 -1.6 1.6-4.1 1.6-5.7 0 -3.3-3.3-3.5-6.7-3.6-9.1 -0.1-1.9-0.2-2.7-1.3-3.9 -1.2-1.2-2-1.2-3.9-1.3 -2.4-0.1-5.8-0.3-9.1-3.6 -3.3-3.3-3.5-6.7-3.6-9.1 -0.1-1.9-0.2-2.7-1.3-3.9 -1.2-1.2-2-1.2-3.9-1.3 -2.4-0.1-5.8-0.3-9.1-3.6 -3.3-3.3-3.5-6.7-3.6-9.1 -0.1-1.9-0.2-2.7-1.3-3.9 -1-1-3.1-1.3-5.2-1.5 -3.2-0.4-9.8-1.2-9.8-8.3 0-7.1 6.6-7.9 9.8-8.3 2.1-0.2 4.2-0.5 5.2-1.5 1.1-1.1 1.2-2 1.3-3.9 0.1-2.4 0.3-5.8 3.6-9.1 3.3-3.3 6.7-3.5 9.1-3.6 1.9-0.1 2.7-0.1 3.9-1.3 1.1-1.1 1.2-2 1.3-3.9 0.1-2.4 0.3-5.8 3.6-9.1 3.3-3.3 6.7-3.5 9.1-3.6 1.9-0.1 2.7-0.1 3.9-1.3 1.2-1.1 1.2-2 1.3-3.9 0.1-2.4 0.3-5.8 3.6-9.1C60.6 3.1 61.6 2.7 62.7 2.7z"/></svg></div>');
             this.$el.find('.slide').wrapAll('<div class="mover" />');
 
             this.dir = 'right';
@@ -46,11 +48,11 @@ define([ 'jquery'
             }, this );
 
             if( this.num_of_slides === 1 )
-                this.$right.addClass('disabled');       
+                this.$right.addClass('disabled');
+            else
+                this.$right.fadeIn(500);
 
             this.onresize();
-
-            //this.enable(); 
 
             return this;
         },
@@ -72,14 +74,15 @@ define([ 'jquery'
 
         onmouseover : function( e ){ 
             var $this = $(e.currentTarget),
-                position = this.$mover.position();
+                position = this.$mover.position(),
+                offset = 50;
 
             this.dir = this.direction( $this )
 
             if( $this.hasClass('disabled') || this.animating )
                 return;
  
-            position = ( this.dir === 'left' ) ? (position.left + 20) : (position.left -20);
+            position = ( this.dir === 'left' ) ? (position.left + offset) : (position.left - offset);
  
             this.$mover.addClass('speedup');
             this.$mover.css('left', position);
@@ -115,16 +118,22 @@ define([ 'jquery'
 
             if( this.dir === 'left' ) {
  
-                if( this.current_slide === 1)
+                if( this.current_slide === 1){
                     $this.addClass('disabled');
+                    $this.fadeOut(500);
+                }
 
                 this.$right.removeClass('disabled'); 
+                this.$right.fadeIn(500);
             } else {
    
-                if( this.current_slide === this.num_of_slides )
+                if( this.current_slide === this.num_of_slides ){
                     $this.addClass('disabled');
+                    $this.fadeOut(500);
+                }
 
                 this.$left.removeClass('disabled'); 
+                this.$left.fadeIn(500);
             }
  
             this.onresize();
@@ -200,8 +209,8 @@ define([ 'jquery'
                 this.$right.on('click', this.onclick );
 
                 this.$el.on('mouseover', this.onmouseenter ).on('mouseout', this.onmouseleave); 
-                this.$left.on('mouseover', this.onmouseover ).on('mouseout', this.onmouseout );
-                this.$right.on('mouseover', this.onmouseover ).on('mouseout', this.onmouseout );
+                this.$left.on('mouseenter', this.onmouseover ).on('mouseleave', this.onmouseout );
+                this.$right.on('mouseenter', this.onmouseover ).on('mouseleave', this.onmouseout );
             }
 
             this.onresize();

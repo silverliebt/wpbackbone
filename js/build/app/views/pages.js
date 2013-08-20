@@ -5,12 +5,11 @@ define([
   'underscore',
   'backbone',
   'plugins',
-  'raphael',
   'collections/pages',
   'models/pages',
   'views/page',
   'views/widgets/pageTransition'
-], function($, global, _ , Backbone, Plugins, Raphael, PagesCollection, PagesModel, PageView, PageTransition ){
+], function($, global, _ , Backbone, Plugins, PagesCollection, PagesModel, PageView, PageTransition ){
   
 
     // Pages - works a collectionView for pages
@@ -31,26 +30,25 @@ define([
         
         // Public method
         nextPage: function( urlValues ){
+
+            var oldValues = this.getter( 'urlValues' );
   
-            if( urlValues === null )
+            if( urlValues === null || urlValues[ 0 ] === oldValues[0] )
                 return; 
 
-            this.model.set( 'urlValues', urlValues );
-            this.model.set( 'slug', urlValues[0] );
+            this.setter( 'urlValues', urlValues ); 
  
             return this;
         },
 
 
-        parseValues: function(){
+        update: function(){
 
-            var value = 0;
- 
-            var urlValues = this.model.get( 'urlValues');
-            this.model.set( 'slug', urlValues[ value ] );
+            var urlValues   = this.getter( 'urlValues' );
 
-            this.pages[ this.model.get( 'slug' ) ].update( urlValues );
+            this.pages[ urlValues[0] ].update( urlValues );
         },
+
 
 
         render: function(){ 
@@ -97,60 +95,27 @@ define([
             // on purrent page change transition views 
             this.listenTo( this.collection, 'change:current' , this.doTransition );
 
-
-            this.listenTo( this.model, 'change:pageColour' , this.changeColour );
-
             // on urlValue change call pageView
-            this.listenTo( this.model, 'change:urlValues' , this.parseValues );
- 
-            // this.nextPage( global.bootstrap.pageId );
-            this.parseValues( this.model.get( 'urlValues' ) );
-        },
-
-        
-        setColour: function( mouseover, urlValues ){
-
-            var slug = urlValues[0];
-
-            if( slug === global.bootstrap.sayhiSlug )
-                return;
-
-            var target;
-
-            // if mouseover true - use menuItem slug as target colour
-            // else if mouseout false - return colour to selected page
-            target = ( mouseover ) ? slug : this.getter('slug');
- 
-            // use pageId to reference page & set pageColour
-            _.each(this.collection.models, function( model ){
-                if( model.get('slug') === target )
-                    this.setter( 'pageColour', model.get('pageColour') );
-            }, this );   
-
-            return this;
-        },
-
-
-        changeColour: function(){
- 
-            $('body, .panel').css( 'background-color', this.getter('pageColour') );
+            this.listenTo( this.model, 'change:urlValues' , this.update );
+  
+            this.update( this.getter( 'urlValues' ) );
         },
 
  
-
         doTransition : function(_model, val, opts) {
  
             // CSS Page transitions  
             // if first page load return
-            if( this.model.get('firstPageLoad') ){ 
-                this.model.set('firstPageLoad', false); 
+            if( this.getter('firstPageLoad') ){ 
+                this.setter('firstPageLoad', false); 
                 return false;
-            } 
+            }
 
-            this.transition.render( this.model.get('slug') );
+            var oldValues = this.getter( 'urlValues' );
+
+            this.transition.render( oldValues[ 0 ] );
         },
  
-
 
         getter : function( value ){ 
             return this.model.get( value );

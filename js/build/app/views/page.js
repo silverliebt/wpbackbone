@@ -68,7 +68,7 @@ define([ 'jquery'
                 else
                     this.render();
             else
-                this.loadPage( { 'onComplete' : this.render } ); 
+                this.loadPage(); 
             
             return this;
         },
@@ -95,8 +95,9 @@ define([ 'jquery'
  
         
         refresh : function(){ 
- 
-            $('.current-page .content-wrap').fadeIn(500);
+
+
+            $('.current-page .inner').fadeIn(500);
 
             $('body').removeClass();
             $('body').addClass(this.getter('slug'));
@@ -105,6 +106,10 @@ define([ 'jquery'
             this.setter('current',true);
             
             this.saveUrl();
+
+            this.setTitle();
+
+            this.setFavicon();
         },
         
 
@@ -123,7 +128,7 @@ define([ 'jquery'
          
         loadPage : function( options ){
 
-            this.preload();
+            this.beforeLoad();
             
             var url = global.url + '/' + this.getter('slug'),
                 that = this;   
@@ -136,42 +141,36 @@ define([ 'jquery'
                 that.setter( 'loaded' , true );
                 that.$el.html( response ); 
 
-                that.postload( options.onComplete );
+                that.afterLoad();
             });
         },
 
 
 
-        preload : function(){
-
-            // fade in preloader
-            $('.preloader').fadeIn(500);
-
-            // fade out content
-            $('.current-page .content-wrap').fadeOut(500);
+        beforeLoad : function(){
+ 
+            $('.preloader').fadeIn(500); 
+            $('.current-page .inner').fadeOut(500);
         },
 
 
 
-        postload : function( onComplete ){
+        afterLoad : function( onComplete ){
  
-            $('.preloader').fadeOut(500);
+            $('.preloader').fadeOut(500); 
 
-            onComplete();
+            this.render();
         },
 
 
 
         // Enable / Disable pages 
         current : function( _model, val, opts ){
- 
-            // if( this.getter( 'firstLoad' ) )
-            //     this.setter( 'firstLoad' , false );
-            // else
+  
             if( val )
                 this.view.enable();
             else
-                setTimeout( this.view.disable , 500 ); // disable roughly after transition
+                setTimeout( this.view.disable , 500 ); // disable approx after transition
         },
  
   
@@ -179,9 +178,31 @@ define([ 'jquery'
             return this.model.get( value );
         },
 
+
         setter : function( target , value ){ 
             this.model.set( target , value );
-        }
+        },
+
+
+        setFavicon : function() { 
+
+            $('head link[type="image/x-icon"]').remove();
+
+            var link = document.createElement('link');
+            link.type = 'image/x-icon';
+            link.rel = 'shortcut icon';
+            link.href = this.getter('faviUrl');
+            document.getElementsByTagName('head')[0].appendChild(link);
+          
+        },
+
+
+        setTitle : function(){
+
+            var pageTitle = this.getter('slug').replace('-',' ');
+            pageTitle = 'Cam ~ '+pageTitle.capitalize()+'!';
+            document.title = pageTitle;
+        },
     });
 
     return PageView;

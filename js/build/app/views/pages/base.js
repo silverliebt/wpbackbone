@@ -48,11 +48,7 @@ define([ 'jquery'
         // call childs disable
         if( this.onDisable ) this.onDisable();
 
-
- 
         var instances = this.getter( 'instances' );
-
-        console.log(instances);
 
         $.each( instances , function(){
           this.disable(); 

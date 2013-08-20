@@ -15,8 +15,7 @@ define(['global'],function ( global ) {
         for (i = 0; i < resizeStack.length; i++){
             var item = resizeStack[i];
             item.callback( global.screen.width , global.screen.height );
-
-            console.log( item.id );
+ 
         }
     },
 

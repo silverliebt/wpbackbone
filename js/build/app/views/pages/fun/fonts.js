@@ -24,6 +24,7 @@ define([ 'jquery'
             _.bindAll(this);  
 
             this.setter( 'demos' , [ 'block', 'handybit', 'ddu' , 'softsurf' ] ); 
+            this.setter( 'current' , false );
         }, 
 
 
@@ -66,11 +67,17 @@ define([ 'jquery'
 
 
         // called from BasePageView
-        onEnable :  function(){  this.$el.addClass('reveal'); },
+        onEnable :  function(){  
+            if( this.getter('current') )
+                this.$el.addClass('reveal'); 
+        },
 
 
         // called from BasePageView
-        onDisable : function(){  this.$el.removeClass('reveal'); },
+        onDisable : function(){   
+
+            this.$el.removeClass('reveal'); 
+        },
 
  
         beforeComplete : function( direction ){

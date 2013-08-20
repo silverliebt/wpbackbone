@@ -8,10 +8,12 @@ define([ 'jquery'
         ,'plugins' 
         ,'views/pages/base'
         ,'models/pages/fun'
-        ,'views/pages/fun/lazyline'
-        ,'views/pages/fun/box2d'
-        ,'views/pages/fun/fonts' 
-       ],function( $, global, _ , Plugins, BasePageView, FunModel, LazylineView, Box2dView, FontsView ) {       
+        // ,'views/pages/fun/lazyline'
+        // ,'views/pages/fun/box2d'
+        // ,'views/pages/fun/fonts' 
+        ,'collections/demos'
+        ,'views/pages/fun/demo'
+       ],function( $, global, _ , Plugins, BasePageView, FunModel, DemosCollection, DemoView ) {       
      
     
     var Fun = BasePageView.extend({
@@ -20,42 +22,75 @@ define([ 'jquery'
  
         initialize: function(){
             _.bindAll(this);
-
-            this.views = [];
-            this.currentView;
-        },
+ 
+            this.currentView; 
+        }, 
 
         render: function(){ 
 
-            this.menu();
+            // this.menu();
 
             // init Biography View
-            this.llpView = new LazylineView({ el : this.$el.find('.lazylinepainter') }); 
-            this.currentView = this.llpView;
-            this.currentView.render(); 
+            // this.llpView = new LazylineView({ el : this.$el.find('.lazylinepainter') }); 
+            // this.currentView = this.llpView;
+            // this.currentView.setter('current', true);
+            // this.currentView.render(); 
 
-            // Add llpView obj to instance stack in model.
-            // BaseView enable / disable will fire llpView enable / disable callbacks on page change
-            this.addInstance({ 
-                hook : 'llp', 
-                obj : this.llpView 
-            });
+            // // Add llpView obj to instance stack in model.
+            // // BaseView enable / disable will fire llpView enable / disable callbacks on page change
+            // this.addInstance({ 
+            //     hook : 'llp', 
+            //     obj : this.llpView 
+            // });
 
-            // // init Skills View
-            // this.box2dView = new Box2dView({ el : this.$el.find('.box2d') });   
+            // // // init Skills View
+            // // this.box2dView = new Box2dView({ el : this.$el.find('.box2d') });   
 
-            // init Experience View
-            this.fontsView = new FontsView({ el : this.$el.find('.fonts') });
-            this.currentView = this.fontsView; 
+            // // init Experience View
+            // this.fontsView = new FontsView({ el : this.$el.find('.fonts') });
+            // this.currentView = this.fontsView; 
 
-            this.addInstance({ 
-                hook : 'fonts', 
-                obj : this.fontsView 
-            });
+            // this.addInstance({ 
+            //     hook : 'fonts', 
+            //     obj : this.fontsView 
+            // });
 
-            this.views = [ this.llpView , this.fontsView ];
+            //this.views = [ this.llpView , this.fontsView ];
+
+            this.pages = {}; // child views
+
+            this.collection = new DemosCollection();
+            this.collection.fetch({ success : this.initSubViews, dataType: "jsonp" });
  
             return this;
+        },
+
+
+        initSubViews :  function(){
+            // append pages to the DOM from DemoCollection models,
+            // except the currentpage, which is already on the DOM
+            this.collection.each( function( page ){
+ 
+                var slug = page.get('slug'),
+                    urlValue = this.getter( 'urlValues' ),
+                    currentPage = ( urlValue[1] === slug ) ? true : false,
+                    demoView;
+    
+                if( currentPage ){
+                    demoView = new DemoView({ model: page, el: $('.current-page') });
+                    demoView.model.set( 'loaded', true );
+                } else {
+                    // init new page view
+                    demoView = new DemoView({ model: page });
+                    // add to page
+                    this.$el.append( demoView.el );
+                }
+
+                // setView
+                demoView.setView();
+
+                this.pages[ slug ] = demoView;
+            }, this ); 
         },
 
 
@@ -65,12 +100,16 @@ define([ 'jquery'
  
             this.$el.find('.menu span').on('click', function(){
 
-                //that.$el.find('.menu').addClass('hide');
+                if( $(this).hasClass('selected') )
+                    return;
+
+                that.$el.find('.menu .selected').removeClass('selected');
+
+                $('.preloader').fadeIn(500);
 
                 // disable each view
                 $.each( that.views, function(){
-
-                    if( this.getter( 'rendered' ) )
+                    if( this.getter( 'current' ) )
                         this.disable();
                 });
 
@@ -78,12 +117,13 @@ define([ 'jquery'
                 var c = $(this).attr('class');
                 c = c.replace('-link','');
                 that.currentView = that[c+'View'];
+
+                $(this).addClass('selected');
                 
                 // render or enable
-                if( that.currentView.getter( 'rendered' ) ){
-                    that.currentView.enable(); 
-                }
-                else{
+                if( !that.currentView.getter( 'rendered' ) )
+                     that.currentView.render();
+                
                     // if( c == 'box2d' ){
 
                     //     var faq = null; 
@@ -103,9 +143,8 @@ define([ 'jquery'
                     //     // );
                     // }
 
-                    that.currentView.render();
-                    that.currentView.enable();  
-                }
+                that.currentView.setter('current', true); 
+                that.currentView.enable();   
 
                 //that.arrows('disable');
 

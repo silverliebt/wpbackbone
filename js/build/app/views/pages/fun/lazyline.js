@@ -24,12 +24,8 @@ define([ 'jquery'
 
             _.bindAll(this);  
  
-            this.setter( 'lazylineHandler' , [] ); 
-            // used to add unique media queries to container
-            this.setter( 'currentClass' , 'guy' ); 
-
-            var applyline = ( global.smart.phone ) ? 'stamp' : 'paint';
-            this.setter( 'applyline' ,  applyline );  
+            this.setter( 'lazylineHandler' , [] );
+            this.setter( 'current' , false );
         },
 
 
@@ -158,11 +154,18 @@ define([ 'jquery'
 
 
         // called from BasePageView
-        onEnable :  function(){ this.$el.addClass('reveal'); },
+        onEnable :  function(){  
+            if( this.getter('current') )
+                this.$el.addClass('reveal'); 
+        },
 
 
         // called from BasePageView
-        onDisable : function(){  this.$el.removeClass('reveal'); },
+        onDisable : function(){  
+            //this.setter( 'current' , false );
+
+            //this.$el.removeClass('reveal'); 
+        },
 
 
         beforeComplete : function( direction ){
@@ -201,11 +204,10 @@ define([ 'jquery'
         update : function(){
 
             var demos = this.getter( 'demos' ),
-                index = this.getter( 'index' ),
-                applyline = this.getter( 'applyline' );
+                index = this.getter( 'index' );
  
             $.each( demos[ index ], function(){
-                this.lazylinepainter( applyline );
+                this.lazylinepainter( global.misc.applyline );
             });
         }
     });

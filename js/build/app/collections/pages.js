@@ -49,9 +49,8 @@ define([
           pageId  : results.id,
           childrenIds : this.getChildrenIds( results ),
           acf         : results.acf,
-          linkColour  : results.acf.link_colour,
-          backgroundColor  : results.acf.background_color,
-          attachments : results.attachments
+          attachments : results.attachments,
+          faviUrl : results.acf.favicon
         };
       },
 

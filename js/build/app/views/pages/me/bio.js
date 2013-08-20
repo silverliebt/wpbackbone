@@ -23,44 +23,30 @@ define([ 'jquery'
 
             this.expanded = false;
 
-            this.nzbuilt = false;
-            this.eubuilt = false;
-
-            this.render(); 
+            // this.nzbuilt = false;
+            // this.eubuilt = false;
+ 
         },
 
 
         render : function(){
 
-            var that = this, 
-                $readon = this.$el.find('.readon'),
-                $bio = this.$el.find('.content'),
-                originalText = $bio.html(),
-                truncText = $bio.find('p:first-child, p:nth-child(2), p:nth-child(3)');
+            this.$countdown     = $('#sinceCountdown');
+            this.$readon        = this.$el.find('.readon');
+            this.$bio           = this.$el.find('.content');
+            this.originalText   = this.$bio.html();
+            this.truncText      = this.$bio.find('p:first-child, p:nth-child(2), p:nth-child(3)');
 
-            $bio.html( truncText );
+            this.$bio.html( this.truncText );
+        },
 
-            $readon.on('click', function(){ 
-
-                // if expanded abridge and vice versa
-                if( that.expanded ){
-
-                    originalText = $bio.html();
-
-                    $('.current-page .scrollpane').scrollTo( $('.bio') ); 
-                    $bio.html(truncText);
-                    $(this).html('Read on');
-                    that.expanded = false;
-
-                } else {
-                    $bio.html(originalText);
-                    $(this).html('Abridge');
-                    that.expanded = true;
-                } 
-            });
+        
+        enable : function(){
+          
+            this.$readon.on( 'click', this.toggleText );
 
             // init count-up clock
-            $('#sinceCountdown').countdown({
+            this.$countdown.countdown({
               since: new Date(2006, 6-1, 25), 
               format: 'YDHM',
               layout: '<div class="countdown_amount">{yn}<span class="label">{yl}</span> {dn}<span class="label">{dl}</span> {hn}<span class="label">{hl}</span> {mn}<span class="label">{ml}</span>',
@@ -69,33 +55,63 @@ define([ 'jquery'
         },
 
 
-        buildNZ : function(){
+        disable : function(){ 
 
-            if( this.nzbuilt )
-                return;
-
-            console.log('built');
-
-            $('#nz').lazylinepainter({
-                "svgData": global.misc.lazylinedata,
-                "strokeWidth": 2,
-                "strokeColor": "#ebe5d3"
-            }).lazylinepainter( ( global.smart.device ) ? 'stamp' : 'paint' ); 
-
-            this.nzbuilt = true;
+            this.$readon.off();
+            this.$countdown.countdown('destroy');
         },
 
 
-        buildEU : function(){
+        toggleText : function(){ 
 
-            this.eubuilt = true;
+            // if expanded abridge and vice versa
+            if( this.expanded ){
 
-            $('#nz').lazylinepainter({
-                "svgData": global.misc.lazylinedata,
-                "strokeWidth": 3,
-                "strokeColor": "#743335"
-            }).lazylinepainter( ( global.smart.device ) ? 'stamp' : 'paint' ); 
-        } 
+                this.originalText = this.$bio.html();
+
+                $('.current-page .scrollpane').scrollTo( $('.bio') ); 
+                this.$bio.html( this.truncText );
+                this.$readon.html('Read on');
+                this.expanded = false;
+
+            } else {
+                this.$bio.html( this.originalText );
+                this.$readon.html('Abridge');
+                this.expanded = true;
+            }  
+        }
+
+
+        // ,
+
+
+        // buildNZ : function(){
+
+        //     if( this.nzbuilt )
+        //         return;
+
+        //     console.log('built');
+
+        //     $('#nz').lazylinepainter({
+        //         "svgData": global.misc.lazylinedata,
+        //         "strokeWidth": 2,
+        //         "strokeColor": "#ebe5d3"
+        //     }).lazylinepainter( ( global.smart.device ) ? 'stamp' : 'paint' ); 
+
+        //     this.nzbuilt = true;
+        // },
+
+
+        // buildEU : function(){
+
+        //     this.eubuilt = true;
+
+        //     $('#nz').lazylinepainter({
+        //         "svgData": global.misc.lazylinedata,
+        //         "strokeWidth": 3,
+        //         "strokeColor": "#743335"
+        //     }).lazylinepainter( ( global.smart.device ) ? 'stamp' : 'paint' ); 
+        // } 
     });
     
     return BioView; 
