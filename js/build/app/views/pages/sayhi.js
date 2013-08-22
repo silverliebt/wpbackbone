@@ -8,18 +8,26 @@ define([ 'jquery'
         ,'plugins'
         ,'models/pages/sayhi'
         ,'views/pages/base'
-       ],function( $, global, _ , Plugins, SayhiModel, BasePageView ) {       
+        ,'views/pages/page'
+       ],function( $, global, _ , Plugins, SayhiModel, BasePageView, PageView ) {       
      
     
-    var SayHi = BasePageView.extend({
+    var SayHi = PageView.extend({
 
-        model: new SayhiModel(),
+        //model: new SayhiModel(),
 
-        initialize: function(){
+        initialize: function( options ){
+
+            // call PageView setAttributes
+            this.setAttributes( options );
+
             _.bindAll(this);
+
         },
 
-        render: function(){ 
+
+        // render called in PageView, after page loaded build is called
+        build: function(){ 
  
             this.logo();
 

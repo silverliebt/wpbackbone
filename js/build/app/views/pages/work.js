@@ -11,14 +11,18 @@ define([ 'jquery'
         ,'views/pages/base'
         ,'views/widgets/slideshow'
         ,'models/pages/work'
-       ],function( $, global, svg, _ , Backbone, Plugins, BasePageView, SlideshowView, WorkModel ) {       
+        ,'views/pages/page'
+       ],function( $, global, svg, _ , Backbone, Plugins, BasePageView, SlideshowView, WorkModel, PageView ) {       
     
      
-    var Work = BasePageView.extend({
+    var Work = PageView.extend({
 
-      model: new WorkModel(),  
+      //model: new WorkModel(),  
 
-      initialize: function(){
+      initialize: function( options ){
+        // call PageView setAttributes
+            this.setAttributes( options );
+
         _.bindAll(this);
 
         // resize handler
@@ -28,7 +32,10 @@ define([ 'jquery'
         }); 
       },
     
-      render: function(){ 
+
+
+      // render called in PageView, after page loaded build is called
+      build: function(){ 
 
         this.setupSlideShow();
  

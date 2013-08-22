@@ -7,31 +7,46 @@ define([ 'jquery'
         ,'plugins'
         ,'global'
         ,'underscore'
-        ,'views/pages/base'
+        ,'views/pages/page'
         ,'models/svg'
         ,'models/pages/me'
         ,'views/pages/me/bio'
         ,'views/pages/me/skills'
         ,'views/pages/me/exp' 
-       ],function( $, Utils, Plugins, global, _ , BasePageView, svg, MeModel, BioView, SkillsView, ExperienceView ) {       
+       ],function( $, Utils, Plugins, global, _ , PageView, svg, MeModel, BioView, SkillsView, ExperienceView ) {       
     
      
-    var About = BasePageView.extend({
+    var About = PageView.extend({
+ 
 
-      model: new MeModel(), 
+      initialize: function( options ){
 
 
-      initialize: function(){
+        // call PageView setAttributes
+        this.setAttributes( options );
+
         _.bindAll(this);
+ 
 
         global.handlers.resize.add({ 
           'id'      : 'about',
           'callback': this.onresize 
         }); 
+
+        // var bio = {
+        //         rendered : false,
+        //         expanded : false
+        //     },
+        //     skills = { rendered : false }
+
+        // this.setter( 'bio' , bio );
+        // this.setter( 'skills' , skills );
+
       },
     
-
-      render: function(){ 
+    
+      // render called in PageView, after page loaded build is called
+      build: function(){ 
 
         this.menu();
 
@@ -148,12 +163,12 @@ define([ 'jquery'
                     that.skillsView.render();
                   }
 
-                  if( that.bioView.expanded ){
-                    var nzOffset = $('#nz').offset();
+                  // if( that.bioView.expanded ){
+                  //   var nzOffset = $('#nz').offset();
  
-                    if( scrollTop > ( nzOffset.top - ( global.screen.height / 3 ) ))
-                      that.bioView.buildNZ();
-                  }
+                  //   if( scrollTop > ( nzOffset.top - ( global.screen.height / 3 ) ))
+                  //     that.bioView.buildNZ();
+                  // }
                 }
             }
           }

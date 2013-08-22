@@ -7,9 +7,7 @@ define([ 'jquery'
         ,'global'
         ,'underscore'
         ,'backbone'
-        ,'models/pages/base'
-        ,'views/widgets/slideshow'
-       ],function( $, global, _ , Backbone, BasePageModel ) {       
+       ],function( $, global, _ , Backbone ) {       
     
      
     var BasePageView = Backbone.View.extend({
@@ -43,8 +41,8 @@ define([ 'jquery'
         });
       },
 
-      disable : function(){ 
-
+      disable : function(){  
+        
         // call childs disable
         if( this.onDisable ) this.onDisable();
 
@@ -72,10 +70,10 @@ define([ 'jquery'
             }
 
         this.addInstance({
-          hook:'scroll',
+          hook:'scroll - '+this.getter('slug'),
           obj : scroll
         });
-      }
+      } 
     });
  
     return BasePageView;

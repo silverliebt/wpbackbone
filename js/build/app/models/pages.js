@@ -9,10 +9,9 @@ define([
     // Pages Model
     var PagesModel = Backbone.Model.extend({
         defaults : {
-            urlValues: [], // ie - [ journal , training ]
+            urlValues: [], // ie - [ fun , lazyline ]
             slug: '',
-            firstPageLoad : true,
-            pageColour: '#3a4284'
+            firstPageLoad : true
         }
     });
     

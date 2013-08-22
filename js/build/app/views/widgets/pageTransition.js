@@ -16,22 +16,23 @@ define([ 'jquery'
 
         model: new PageTransitionModel(),
 
-        initialize : function(){
+        initialize : function( options ){
+
+            this.pages = options.pages;
 
             _.bindAll(this);
         },
 
         render : function( slug ){
     
-            // if already animating or if selected value is false return
-            // if( this.model.get('transition').get('isAnimating') ) 
-            if( global.misc.isAnimating ) 
+            // if already animating or if selected value is false return 
+            if( this.getter( 'isAnimating' )) 
                 return false;  
- 
+
 
             // begin animation - - - - - - - 
 
-            global.misc.isAnimating = true;
+            this.setter( 'isAnimating' , true );
  
             var transitions = this.model.get('transition').get('types'), // array of CSS transitions classnames
                 animEndEventName = this.model.get('transition').get('animEndEventName'), 
@@ -50,7 +51,7 @@ define([ 'jquery'
                 if( that.model.get('transition').get('endNextPage') )
                     that.onEndAnimation( $currPage, $nextPage );
             });
-            
+
 
             $nextPage.addClass( inClass ).on( animEndEventName, function() { 
                  
@@ -59,7 +60,8 @@ define([ 'jquery'
 
                 if( that.model.get('transition').get('endCurrPage') )
                     that.onEndAnimation( $currPage, $nextPage );
-            } );  
+            } ); 
+ 
 
             if(!this.model.get('transition').get('support'))
                 this.onEndAnimation( $currPage, $nextPage );
@@ -71,23 +73,15 @@ define([ 'jquery'
             this.model.get('transition').set('endCurrPage', false);
             this.model.get('transition').set('endNextPage', false);
             this.resetPage( $outpage, $inpage );
-            global.misc.isAnimating =  false;
+            this.setter( 'isAnimating' , false );
         },
         
         resetPage : function( $outpage, $inpage ) {
 
-            $outpage.attr( 'class', 'page background' );
-            $inpage.attr( 'class', 'page background current-page' ); 
+            $outpage.attr( 'class', 'page' );
+            $inpage.attr( 'class', 'page current-page' ); 
         },
 
-
-        setPages : function( pages ){
-
-            // list of pages
-            this.pages = pages;
-        },
-
-        
         getter : function( value ){ 
             return this.model.get( value );
         },

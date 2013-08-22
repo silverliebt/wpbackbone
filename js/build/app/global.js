@@ -26,9 +26,7 @@ define([
 
 		misc : {
 			// retrieve lazyline data
-			lazylinedata : svg.get('lazyline'),
-			// refers to page transitions
-			isAnimating : false
+			lazylinedata : svg.get('lazyline')
 		},
 
 		el : {

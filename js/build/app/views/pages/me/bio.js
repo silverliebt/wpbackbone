@@ -21,11 +21,7 @@ define([ 'jquery'
 
             //this.rendered = false;
 
-            this.expanded = false;
-
-            // this.nzbuilt = false;
-            // this.eubuilt = false;
- 
+            this.expanded = false;  
         },
 
 
@@ -42,7 +38,9 @@ define([ 'jquery'
 
         
         enable : function(){
-          
+
+            console.log( 'enable' );
+
             this.$readon.on( 'click', this.toggleText );
 
             // init count-up clock
@@ -56,6 +54,8 @@ define([ 'jquery'
 
 
         disable : function(){ 
+
+            console.log( 'disable' );
 
             this.$readon.off();
             this.$countdown.countdown('destroy');

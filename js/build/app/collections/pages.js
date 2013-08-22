@@ -44,13 +44,13 @@ define([
       applyFilter : function( results ){
  
         return {
-          title   : results.title,
-          slug    : results.slug,
-          pageId  : results.id,
-          childrenIds : this.getChildrenIds( results ),
+          title     : results.title,
+          slug      : results.slug,
+          pageId    : results.id,
+          children  : results.children,
           acf         : results.acf,
           attachments : results.attachments,
-          faviUrl : results.acf.favicon
+          faviUrl     : results.acf.favicon
         };
       },
 
@@ -70,19 +70,21 @@ define([
       },
 
 
-      getChildrenIds :  function( results ){
+      // getChildrenIds :  function( results ){
 
-        if( results.children.length === 0 )
-          return;
+      //   console.log(results.children);
 
-        var childrenIds = [];
+      //   if( results.children.length === 0 )
+      //     return;
 
-        $.each( results.children, function(){
-          childrenIds.push( this.id );
-        }); 
+      //   var childrenIds = [];
 
-        return childrenIds;
-      },
+      //   $.each( results.children, function(){
+      //     childrenIds.push( this.id );
+      //   }); 
+
+      //   return childrenIds;
+      // },
  
 
       changeSelected: function( model, val, opts ){

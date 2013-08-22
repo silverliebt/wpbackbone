@@ -6,29 +6,29 @@ define([ 'jquery'
         ,'global'
         ,'underscore' 
         ,'plugins' 
-        ,'views/pages/base'
-        ,'models/pages/fun'
-        // ,'views/pages/fun/lazyline'
-        // ,'views/pages/fun/box2d'
-        // ,'views/pages/fun/fonts' 
+        ,'views/pages/page'
         ,'collections/demos'
         ,'views/pages/fun/demo'
-       ],function( $, global, _ , Plugins, BasePageView, FunModel, DemosCollection, DemoView ) {       
+       ],function( $, global, _ , Plugins, PageView, DemosCollection, DemoView ) {       
      
     
-    var Fun = BasePageView.extend({
-
-        model : new FunModel(),
+    var Fun = PageView.extend({
  
-        initialize: function(){
+        initialize: function( options ){
+ 
+            // call PageView setAttributes
+            this.setAttributes( options );
+
             _.bindAll(this);
  
             this.currentView; 
         }, 
 
-        render: function(){ 
 
-            // this.menu();
+        // render called in PageView, after page loaded build is called
+        build: function(){ 
+
+            this.menu();
 
             // init Biography View
             // this.llpView = new LazylineView({ el : this.$el.find('.lazylinepainter') }); 
@@ -97,7 +97,14 @@ define([ 'jquery'
         menu : function(){
 
             var that = this;
- 
+
+            this.$el.find('.scrollpane').prepend('<div class="menu tOpacity" / >');
+
+            $.each( this.getter( 'children' ) , function(){
+                that.$el.find('.menu').append('<span class="'+this.slug+'">'+this.title+'</span>'); 
+            });
+
+
             this.$el.find('.menu span').on('click', function(){
 
                 if( $(this).hasClass('selected') )

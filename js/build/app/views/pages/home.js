@@ -6,26 +6,31 @@ define([ 'jquery'
         ,'global'
         ,'underscore' 
         ,'plugins'
-        ,'models/pages/home'
-        ,'views/pages/base'
-       ],function( $, global, _ , Plugins, HomeModel, BasePageView ) {       
-     
-    
-    var Home = BasePageView.extend({
+        ,'views/pages/page'
+       ],function( $, global, _ , Plugins, PageView ) {
 
-      model: new HomeModel(),
 
-      initialize: function(){
+    var Home = PageView.extend({
+ 
+      initialize: function( options ){
+ 
+        // call PageView setAttributes
+        this.setAttributes( options );
+
         _.bindAll(this);
-
+ 
         global.handlers.resize.add({ 
           'id'      : 'home',
           'callback': this.onresize 
         });
+
+        this.setModel();
       },
 
 
-      render: function(){ 
+
+      // render called in PageView, after page loaded build is called
+      build: function(){ 
     
         this.logo(); 
   
@@ -71,9 +76,7 @@ define([ 'jquery'
       },
 
 
-      onresize : function(){
-         
-      },
+      onresize : function(){ },
 
 
       decorate : function(){   
@@ -125,6 +128,26 @@ define([ 'jquery'
             
             $(this).css({'margin-top' : mTop+'px' }); 
         });
+      },
+
+
+      setModel : function(){
+        var decorations = {
+              containers : {
+                  right: $("#right-motif"),
+                  left: $("#left-motif")
+              },
+              motifs : [
+                  "dressing-up-jump",
+                  "dressing-down-jump",
+                  "dressing-down-scribble",
+                  "dressing-up-zag",
+                  "dressing-down-zag"
+              ],
+              delay : 2500 
+            }
+   
+        this.setter( 'decorations' , decorations );
       }
     }); 
 

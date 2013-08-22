@@ -28,8 +28,23 @@ define([
                 data.slug = 'home';
 
             return data;
+        } ,
+        // used to push new obj's into instance stack ,
+        // we loop through these objs and disable / enable them when needed
+        // ie - the custom scrollbar on each page
+        addInstance : function( item ){
+            var instances = this.get('instances');
+            instances.push( item );
+            this.set( 'instances' , instances ); 
+        },
+
+        initialize: function(){
+            var instances = [];
+            this.set('instances',instances);
         }
     });
+
+    //_.defaults( PageModel.prototype.defaults, BaseModel.prototype.defaults );
     
-    return PageModel;
+    return  PageModel;
 });

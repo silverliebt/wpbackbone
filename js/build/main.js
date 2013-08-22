@@ -9,9 +9,9 @@ require.config({
     
     paths: {
         "app"           : "app"
-        //, "box2d"       : "../lib/Box2dWeb-2.1.a.3.min"
-        , "jquery"      : "../lib/jquery-2.0.2.min"
         , "global"      : "global"
+        //, "marionette"  : "../lib/backbone.marionette.min"
+        , "jquery"      : "../lib/jquery-2.0.2.min"
         , "underscore"  : "../lib/underscore-min"
         , "backbone"    : "../lib/backbone-min"
         , "plugins"     : "../lib/plugins"
@@ -28,7 +28,11 @@ require.config({
         "backbone": {
             "deps" : [ "jquery" , "underscore" ],
             "exports" : "Backbone"
-        } 
+        },
+        "marionette" : {
+            "deps" : [ "jquery" , "underscore" , "backbone" ],
+            "exports" : "Marionette"
+        }
     }
 });
 

@@ -29,6 +29,8 @@ define([ 'jquery'
 
             this.rendered = true;
 
+            console.log('hi');
+
             var that = this;
             
             $('.skills  .skill').each(function(){
