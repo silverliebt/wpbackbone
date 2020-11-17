@@ -5,6 +5,6 @@ I'm currently in development.
 
 My aim is to implement Backbone / Underscore & Require into a Wordpress theme.
 
-Jaspers currentley dependant on the ACF $ JSON API Plugins.
+Jaspers currently dependant on the ACF $ JSON API Plugins.
 
 Will possibley look to jettison ACF and replace the JSON API Plugin with Wordpress's Jetpack. 
